@@ -1,4 +1,7 @@
+[![Release](https://img.shields.io/github/v/release/igorpereirabr1/hermione_databricks)]((https://pypi.org/project/hermione-databricks/))
+![Python Version](https://img.shields.io/badge/python-3.7%20%7C%203.8-brightgreen.svg)
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
+[![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
 
 ## What is Databricks?
 ---
