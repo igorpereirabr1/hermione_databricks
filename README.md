@@ -83,7 +83,7 @@ After installed Hermione - Databricks:
 0.  Configure the Databricks autentication :
 
 ```
-hermione_databricks databricks_config --token
+hermione_databricks databricks-config
 ```
 Here you need to specify the databricks host and the access token. 
 The integration will be made using the official databricks-cli library.
