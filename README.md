@@ -11,8 +11,6 @@
 ### Build status
 | Develop                                                                     | Stable                                                                            | Documentation                                                                                                                                           | Sonar                                                                                                                                                                                    |
 |-----------------------------------------------------------------------------|-----------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| ![Test](https://github.com/quintoandar/butterfree/workflows/Test/badge.svg) | ![Publish](https://github.com/quintoandar/butterfree/workflows/Publish/badge.svg) | [![Documentation Status](https://readthedocs.org/projects/butterfree/badge/?version=latest)](https://butterfree.readthedocs.io/en/latest/?badge=latest) | [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=quintoandar_butterfree&metric=alert_status)](https://sonarcloud.io/dashboard?id=quintoandar_butterfree) |
-
 
 
 ## What is Databricks?
