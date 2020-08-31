@@ -3,6 +3,18 @@
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
 
+
+| Source    | Downloads                                                                                                                       | Page                                                 | Installation Command                       |
+|-----------|---------------------------------------------------------------------------------------------------------------------------------|------------------------------------------------------|--------------------------------------------|
+| **PyPi**  | [![PyPi Downloads](https://pepy.tech/badge/hermione_databricks)](https://pypi.org/project/hermione_databricks/)                      | [Link](https://pypi.org/project/hermione_databricks/)        | `pip install hermione-databricks `                  |
+
+### Build status
+| Develop                                                                     | Stable                                                                            | Documentation                                                                                                                                           | Sonar                                                                                                                                                                                    |
+|-----------------------------------------------------------------------------|-----------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| ![Test](https://github.com/quintoandar/butterfree/workflows/Test/badge.svg) | ![Publish](https://github.com/quintoandar/butterfree/workflows/Publish/badge.svg) | [![Documentation Status](https://readthedocs.org/projects/butterfree/badge/?version=latest)](https://butterfree.readthedocs.io/en/latest/?badge=latest) | [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=quintoandar_butterfree&metric=alert_status)](https://sonarcloud.io/dashboard?id=quintoandar_butterfree) |
+
+
+
 ## What is Databricks?
 ---
 Azure Databricks is an Apache Spark-based analytics platform optimized for the Microsoft Azure/AWS cloud services platforms. Designed with the founders of Apache Spark, Databricks is integrated with Azure/AWS to provide one-click setup, streamlined workflows, and an interactive workspace that enables collaboration between data scientists, data engineers, and business analysts.
