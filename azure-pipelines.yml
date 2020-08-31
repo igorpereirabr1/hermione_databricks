@@ -1,0 +1,43 @@
+trigger:
+  branches:
+    include:
+    - master
+stages:
+- stage: __default
+  jobs:
+  - job: Job
+    pool:
+      vmImage: ubuntu-latest
+    strategy:
+      matrix:
+        Python37:
+          python.version: 3.7
+    steps:
+    - task: UsePythonVersion@0
+      inputs:
+        versionSpec: $(python.version)
+      displayName: Use Python $(python.version)
+    - task: CmdLine@2
+      displayName: Install dependencies
+      inputs:
+        script: >
+          python -m pip install --upgrade pip
+
+          pip install -r requirements.txt
+    - task: CmdLine@2
+      displayName: install
+      inputs:
+        script: >
+          python setup.py install
+    - task: CopyFiles@2
+      inputs:
+        contents: >
+          **/*
+
+          !.git/**/*
+        targetFolder: $(Build.ArtifactStagingDirectory)
+    - task: PublishBuildArtifacts@1
+      inputs:
+        pathToPublish: $(Build.ArtifactStagingDirectory)
+        artifactName: hermione_databricks_Build_Outputs
+

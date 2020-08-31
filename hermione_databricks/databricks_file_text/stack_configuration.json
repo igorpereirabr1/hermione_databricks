@@ -1,0 +1,104 @@
+{
+    "name": r"project_name",
+    "resources": [
+      {
+        "id": "workspace-project-dir",
+        "service": "workspace",
+        "properties": {
+          "source_path": r"project_local_path",
+          "path": r"project_workspace_path",
+          "object_type": "DIRECTORY"
+        }
+      },
+      {
+        "id": "workspace-model-dir",
+        "service": "workspace",
+        "properties": {
+          "source_path": r"project_local_path/model",
+          "path": r"project_workspace_path/model",
+          "object_type": "DIRECTORY"
+        }
+      },
+      {
+        "id": "workspace-notebook-dir",
+        "service": "workspace",
+        "properties": {
+          "source_path": r"project_local_path/notebooks",
+          "path": r"project_workspace_path/notebook",
+          "object_type": "DIRECTORY"
+        }
+      },
+      {
+        "id": "workspace-preprocessing-dir",
+        "service": "workspace",
+        "properties": {
+          "source_path": r"project_local_path/preprocessing",
+          "path": r"project_workspace_path/preprocessing",
+          "object_type": "DIRECTORY"
+        }
+      },
+      {
+        "id": "workspace-readme-notebook",
+        "service": "workspace",
+        "properties": {
+          "source_path": r"project_local_path/README.ipynb",
+          "path": r"project_workspace_path/README.ipynb",
+          "object_type": "NOTEBOOK"
+        }
+      },
+      {
+        "id": "workspace-model-notebook",
+        "service": "workspace",
+        "properties": {
+          "source_path": r"project_local_path/model/model.ipynb",
+          "path": r"project_workspace_path/model/model.ipynb",
+          "object_type": "NOTEBOOK"
+        }
+      },
+      {
+        "id": "workspace-preprocessing-notebook",
+        "service": "workspace",
+        "properties": {
+          "source_path": r"project_local_path/preprocessing/preprocessing.ipynb",
+          "path": r"project_workspace_path/preprocessing/preprocessing.ipynb",
+          "object_type": "NOTEBOOK"
+        }
+      },
+      {
+        "id": "workspace-exploratory_analysis-notebook",
+        "service": "workspace",
+        "properties": {
+          "source_path": r"project_local_path/notebooks/exploratory_analysis.ipynb",
+          "path": r"project_workspace_path/notebooks/exploratory_analysis.ipynb",
+          "object_type": "NOTEBOOK"
+        }
+      },
+      {
+        "id": "dbfs-model_input-dir",
+        "service": "dbfs",
+        "properties": {
+          "source_path": r"project_local_path/model/input",
+          "path": r"project_dbfs_path/model/input",
+          "is_dir": true
+        }
+      },
+      {
+        "id": "dbfs-model_output-dir",
+        "service": "dbfs",
+        "properties": {
+          "source_path": r"project_local_path/model/output",
+          "path": r"project_dbfs_path/model/input",
+          "is_dir": true
+        }
+      },
+      {
+        "id": "dbfs-model_artifacts-dir",
+        "service": "dbfs",
+        "properties": {
+          "source_path": r"project_local_path/model/artifacts",
+          "path": r"project_dbfs_path/model/artifacts",
+          "is_dir": true
+        }
+      }
+    ]
+  }
