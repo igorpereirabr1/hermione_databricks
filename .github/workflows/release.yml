@@ -34,16 +34,16 @@ jobs:
         release_name: Release ${{ env.version }}
 
     - name: Release already exist
-        if: ${{ failure() }}
-        run: echo Release already exist
+      if: ${{ failure() }}
+      run: echo Release already exist
   
     - name:  Publish distribution 📦 to Test PyPI
-        if: ${{ success() }}
-        uses: pypa/gh-action-pypi-publish@master
-        with:
-          password: ${{ secrets.test_pypi_password }}
-          repository_url: https://test.pypi.org/legacy/
-          skip_existing: true
+      if: ${{ success() }}
+      uses: pypa/gh-action-pypi-publish@master
+      with:
+        password: ${{ secrets.test_pypi_password }}
+        repository_url: https://test.pypi.org/legacy/
+        skip_existing: true
 
 
     - name: Publish distribution 📦 to PyPI
