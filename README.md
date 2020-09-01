@@ -84,7 +84,7 @@ To install simply run
 ``pip install --upgrade hermione-databricks``
 
 
-Then set up authentication using username/password or `authentication token <https://docs.databricks.com/api/latest/authentication.html#token-management>`_. Credentials are stored at ``~/.databrickscfg``.
+Then set up authentication using an `authentication token: <https://docs.databricks.com/api/latest/authentication.html#token-management>`_. Credentials are stored at ``~/.databrickscfg``.
 
 - ``hermione_databricks databricks-config`` (enter hostname/auth-token at prompt)
 
@@ -92,25 +92,24 @@ To test that your authentication information is working, try a quick test like `
 
 
 ## How do I use hermione-databricks?
-After installed Hermione - Databricks:
+After installed hermione-databricks:
 0.  Configure the Databricks autentication :
 
 ```
 hermione_databricks databricks-config
 ```
-Here you need to specify the databricks host and the access token. 
-The integration will be made using the official databricks-cli library.
+Here you need to specify the databricks host and the access token, The integration will be made using the official databricks-cli library.
 
 1. Starting a new databricks project
 
 ```
 hermione_databricks new-databricks-project
 ```
-Here the hermione-databricks will prompt ask:
+Here the hermione-databricks will ask by the:
 - **Project Name:** your project name;
 - **Project Description:** Quicly project description;
 - **Databricks Host Workspace path:** Databricks workspace path, location where your workspace objects will be saved
-- **Databricks Host DBFS path:** Databricks DBFS path, location where your DBFS objects will be saved
+- **Databricks Host DBFS path:** Databricks DBFS path, location where your DBFS objects will be saved(**include the dbfs:/ prefix**).
 
 ![step_by_step](images/hermione_databricks_new_project.png)
 
