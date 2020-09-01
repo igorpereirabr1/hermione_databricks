@@ -86,7 +86,7 @@ To install simply run
 
 Then set up authentication using username/password or `authentication token <https://docs.databricks.com/api/latest/authentication.html#token-management>`_. Credentials are stored at ``~/.databrickscfg``.
 
-- ``hermione-databricks databricks_config --token`` (enter hostname/auth-token at prompt)
+- ``hermione_databricks databricks-config`` (enter hostname/auth-token at prompt)
 
 To test that your authentication information is working, try a quick test like ``databricks workspace ls``.
 
