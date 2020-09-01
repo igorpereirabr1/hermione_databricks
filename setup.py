@@ -8,7 +8,7 @@ with open('README.md', encoding='utf-8') as f:
 
 exec(open('hermione_databricks/version.py').read())
 
-__version__=="0.0.4"
+#__version__=="0.0.4"
 
 setup(
     name='hermione-databricks',
