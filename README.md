@@ -22,7 +22,7 @@
 
 | Source    | Downloads                                                                                                                       | Page                                                 | Installation Command                       |
 |-----------|---------------------------------------------------------------------------------------------------------------------------------|------------------------------------------------------|--------------------------------------------|
-| **PyPi**  | [![PyPi Downloads](https://pepy.tech/badge/hermione_databricks)](https://pypi.org/project/hermione_databricks/)                      | [Link](https://pypi.org/project/hermione_databricks/)        | `pip install hermione-databricks `                  |
+| **PyPi**  | [![PyPi Downloads](https://pepy.tech/badge/hermione_databricks)](https://pypi.org/project/hermione_databricks/)                      | [Link](https://pypi.org/project/hermione_databricks/)        | `pip install -U hermione-databricks `                  |
 
 
 
