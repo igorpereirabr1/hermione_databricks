@@ -1,11 +1,14 @@
 from setuptools import setup, find_packages
-from hermione_databricks.version import __version__
 import re
 import os
 
 
 with open('README.md', encoding='utf-8') as f:
     long_description = f.read()
+
+exec(open('hermione_databricks/version.py').read())
+
+__version__=="0.0.4"
 
 setup(
     name='hermione-databricks',
