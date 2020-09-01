@@ -12,7 +12,7 @@ with open(ver_path) as ver_file:
 with open('README.md', encoding='utf-8') as f:
     long_description = f.read()
 
-version = main_ns['__version__']
+__version__ = main_ns['__version__']
 
 setup(
     name='hermione-databricks',
