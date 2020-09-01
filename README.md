@@ -1,5 +1,5 @@
 [![Release](https://img.shields.io/github/v/release/igorpereirabr1/hermione_databricks)]((https://pypi.org/project/hermione-databricks/))
-![Python Version](https://img.shields.io/badge/python-3.7%20%7C%203.8-brightgreen.svg)
+![Python Version](https://img.shields.io/badge/python-3.6%20|%203.7%20|%203.8-brightgreen.svg)
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
 
@@ -8,9 +8,6 @@
 |-----------|---------------------------------------------------------------------------------------------------------------------------------|------------------------------------------------------|--------------------------------------------|
 | **PyPi**  | [![PyPi Downloads](https://pepy.tech/badge/hermione_databricks)](https://pypi.org/project/hermione_databricks/)                      | [Link](https://pypi.org/project/hermione_databricks/)        | `pip install hermione-databricks `                  |
 
-### Build status
-| Develop                                                                     | Stable                                                                            | Documentation                                                                                                                                           | Sonar                                                                                                                                                                                    |
-|-----------------------------------------------------------------------------|-----------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 
 
 ## What is Databricks?
