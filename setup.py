@@ -1,22 +1,15 @@
 from setuptools import setup, find_packages
-from distutils.util import convert_path
+from hermione_databricks.version import __version__
 import re
 import os
 
 
-main_ns = {}
-ver_path = convert_path('hermione_databricks/version.py')
-with open(ver_path) as ver_file:
-    exec(ver_file.read(), main_ns)
-
 with open('README.md', encoding='utf-8') as f:
     long_description = f.read()
 
-__version__ = main_ns['__version__']
-
 setup(
     name='hermione-databricks',
-    version=main_ns['__version__'],
+    version=__version__,
     author='igor.pereira.br@gmail.com',
     author_email='ju195@cummins.com',
     url='https://github.com/igorpereirabr1/hermione_databricks',
