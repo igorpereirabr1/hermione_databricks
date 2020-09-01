@@ -24,11 +24,8 @@ jobs:
 
     - uses: actions/checkout@v2
 
-    - name: Install dependencies
-      run: make ci-install
-
-    - name: Build package
-      run: make package
+    - name: Build package bdist_wheel
+      run: python setup.py bdist_wheel
   
     - name: Get version
       run: echo ::set-env name=version::$(grep __version__ hermione_databricks/version.py | head -1 | cut -d \" -f2 | cut -d \' -f2)
