@@ -22,6 +22,8 @@ jobs:
     - name: Build
       run: python -m build .
 
+    - uses: actions/checkout@v2
+
     - name: Install dependencies
       run: make ci-install
 
