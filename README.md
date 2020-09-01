@@ -106,6 +106,7 @@ To test that your authentication information is working, try a quick test like `
 
 ## How do I use hermione-databricks?
 After installed hermione-databricks:
+
 0.  Configure the Databricks autentication :
 
 ```
