@@ -116,8 +116,8 @@ def new_databricks_project():
           "project_workspace_path":project_workspace_path,
           "project_dbfs_path":project_dbfs_path
          }
-
-    write_local_files(souce_path,dst_path,**kwargs)
+    # Need some fixes to use it
+    #write_local_files(souce_path,dst_path,**kwargs)
 
     #Upload project to Databricks
 
