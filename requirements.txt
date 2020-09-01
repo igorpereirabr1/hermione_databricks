@@ -1,3 +1,4 @@
 butterfree
 databricks-cli
+click
 #mlflow[extras]
