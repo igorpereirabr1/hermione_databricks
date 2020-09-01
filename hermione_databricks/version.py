@@ -1,4 +1,4 @@
-__version__ = '0.0.11'
+__version__ = '0.0.12'
 #Version :0
 #Release :0
-#Revision:11
+#Revision:12
