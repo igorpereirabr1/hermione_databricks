@@ -21,6 +21,21 @@ jobs:
       run: pip install -U setuptools wheel build
     - name: Build
       run: python -m build .
+
+    - name: Get version
+      run: echo ::set-env name=version::$(grep __version__ setup.py | head -1 | cut -d \" -f2 | cut -d \' -f2)
+
+    - name: Create release
+      uses: actions/create-release@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.RELEASE_TOKEN }}
+      with:
+        tag_name: ${{ env.version }}
+        release_name: Release ${{ env.version }}
+
+    - name: Release already exist
+      if: ${{ failure() }}
+      run: echo Release already exist
     - name: Publish distribution 📦 to Test PyPI
       uses: pypa/gh-action-pypi-publish@master
       with:
