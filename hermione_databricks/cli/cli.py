@@ -102,18 +102,20 @@ def new():
     project_name = click.prompt("Project Name", default="My first Project")
     project_description = click.prompt("Project Description", default=project_name)
     project_workspace_path = click.prompt("Databricks Host Workspace path (sample:/Users/xxxx@xxxxxxxx.com/MyFirstProject)", default=None)
+    project_workspace_path = os.path.join(project_workspace_path,project_name)
     project_dbfs_path = click.prompt("Databricks Host DBFS path (sample:dbfs:/Users/xxxx@xxxxxxxx.com/MyFirstProject)", default=project_workspace_path)
+    project_dbfs_path = os.path.join(project_dbfs_path,project_name)
     project_local_path = os.path.join(LOCAL_PATH, project_name)
     # Now create local files
     click.echo(f"Creating project {project_name}")
     # Folders from Databricks Workspace
-    os.makedirs(os.path.join(project_local_path,'model'))#Databricks Workspace
+    os.makedirs(os.path.join(project_local_path,'model/workspace'))#Databricks Workspace
     os.makedirs(os.path.join(project_local_path,'notebooks'))#Databricks Workspace
 
     # Start to create the project files
     
     # Readme file
-    souce_path = os.path.join(databricks_files_path,"README.txt")
+    souce_path = os.path.join(databricks_files_path,"README.ipynb")
     dst_path = os.path.join(project_local_path,'README.ipynb')
     kwargs = {"project_name":project_name
             ,"project_description":project_description
@@ -123,8 +125,28 @@ def new():
     write_local_files(souce_path,dst_path,**kwargs)
 
     # preprocessing Notebook
-    souce_path = os.path.join(databricks_files_path,"preprocessing.txt")
+    souce_path = os.path.join(databricks_files_path,"preprocessing.ipynb")
     dst_path = os.path.join(project_local_path,'preprocessing/preprocessing.ipynb')
+    kwargs = {"project_name":project_name
+            ,"model_input_path":os.path.join(project_dbfs_path,'model/input/')
+            ,"model_output_path":os.path.join(project_dbfs_path,'model/output/')
+            ,"model_artifacts_path":os.path.join(project_dbfs_path,'model/artifacts/')}
+
+    write_local_files(souce_path,dst_path,**kwargs)
+
+    # exploratory_analysis Notebook
+    souce_path = os.path.join(databricks_files_path,"exploratory_analysis.ipynb")
+    dst_path = os.path.join(project_local_path,'notebooks/exploratory_analysis.ipynb')
+    kwargs = {"project_name":project_name
+            ,"model_input_path":os.path.join(project_dbfs_path,'model/input/')
+            ,"model_output_path":os.path.join(project_dbfs_path,'model/output/')
+            ,"model_artifacts_path":os.path.join(project_dbfs_path,'model/artifacts/')}
+
+    write_local_files(souce_path,dst_path,**kwargs)
+
+    # model Notebook
+    souce_path = os.path.join(databricks_files_path,"model.ipynb")
+    dst_path = os.path.join(project_local_path,'model/workspace/model.ipynb')
     kwargs = {"project_name":project_name
             ,"model_input_path":os.path.join(project_dbfs_path,'model/input/')
             ,"model_output_path":os.path.join(project_dbfs_path,'model/output/')
@@ -134,29 +156,31 @@ def new():
 
     # project config file
     souce_path = os.path.join(databricks_files_path,"stack_configuration.json")
-    dst_path = os.path.join(project_local_path,'stack_configuration.json')
+    dst_path = os.path.join(project_local_path,'config.json')
     kwargs = {"project_name":project_name,
-          "project_local_path":project_local_path,
-          "project_workspace_path":project_workspace_path,
-          "project_dbfs_path":project_dbfs_path
+          "project_local_path":project_local_path.replace("\\",'/'),
+          "project_workspace_path":project_workspace_path.replace("\\",'/'),
+          "project_dbfs_path":project_dbfs_path.replace("\\",'/')
          }
     # Need some fixes to use it
-    #write_local_files(souce_path,dst_path,**kwargs)
+    write_local_files(souce_path,dst_path,**kwargs)
 
     #Upload project to Databricks
 
     workspace_command = "databricks workspace import_dir "+project_local_path+" "+os.path.join(project_workspace_path,project_name) 
     dbfs_command = "databricks workspace import_dir "+project_local_path+" "+os.path.join(project_workspace_path,project_name) 
-    os.system(workspace_command)
+    #Commendt to test the changes localy
+    #os.system(workspace_command)
     for path in ["artifacts","input","output"]:
         dbfs_path = os.path.join(project_dbfs_path,project_name,"model",path)
         dbfs_command = "databricks fs mkdirs "+dbfs_path
-        os.system(dbfs_command)
+        #Commendt to test the changes localy
+        #os.system(dbfs_command)
 
     # Local Folders from Databricks File System(DBFS)
-    os.makedirs(os.path.join(project_local_path,'dbfs/model/input/'))#Databricks DBFS
-    os.makedirs(os.path.join(project_local_path,'dbfs/model/output/'))#Databricks DBFS
-    os.makedirs(os.path.join(project_local_path,'dbfs/model/artifacts/'))#Databricks DBFS
+    os.makedirs(os.path.join(project_local_path,'model/dbfs/input/'))#Databricks DBFS
+    os.makedirs(os.path.join(project_local_path,'model/dbfs/output/'))#Databricks DBFS
+    os.makedirs(os.path.join(project_local_path,'model/dbfs/artifacts/'))#Databricks DBFS
 
     return None
 

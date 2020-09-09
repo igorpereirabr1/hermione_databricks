@@ -2,6 +2,42 @@
     "name": "project_name",
     "resources": [
       {
+        "id": "workspace-project-dir",
+        "service": "workspace",
+        "properties": {
+          "source_path": "project_local_path",
+          "path": "project_workspace_path",
+          "object_type": "DIRECTORY"
+        }
+      },
+      {
+        "id": "workspace-model-dir",
+        "service": "workspace",
+        "properties": {
+          "source_path": "project_local_path/model/workspace",
+          "path": "project_workspace_path/model",
+          "object_type": "DIRECTORY"
+        }
+      },
+      {
+        "id": "workspace-notebook-dir",
+        "service": "workspace",
+        "properties": {
+          "source_path": "project_local_path/notebooks",
+          "path": "project_workspace_path/notebook",
+          "object_type": "DIRECTORY"
+        }
+      },
+      {
+        "id": "workspace-preprocessing-dir",
+        "service": "workspace",
+        "properties": {
+          "source_path": "project_local_path/preprocessing",
+          "path": "project_workspace_path/preprocessing",
+          "object_type": "DIRECTORY"
+        }
+      },
+      {
         "id": "workspace-readme-notebook",
         "service": "workspace",
         "properties": {
@@ -42,7 +78,7 @@
         "service": "dbfs",
         "properties": {
           "source_path": "project_local_path/model/dbfs/input",
-          "path": "project_dbfs_pathmodel/input",
+          "path": "project_dbfs_path/model/input",
           "is_dir": true
         }
       },
