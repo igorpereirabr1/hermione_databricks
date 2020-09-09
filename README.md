@@ -99,7 +99,7 @@ Local project structure
 
 Remote project structure
 ```
-.workspace
+.Workspace
 ├── project_name
 |   ├── README.ipynb
 |   ├── model
