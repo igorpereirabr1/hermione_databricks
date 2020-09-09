@@ -60,13 +60,44 @@ Reference:
 
 ## What is Hermione-Databricks?
 
-Considering these two fantastic tools, we have bring the Hermione magic to the #databricks environment, considering more scalability through the #pyspark and #scala.
+Considering these two fantastic tools, we have bring the Hermione magic to the #databricks environment, considering more scalability through the #pyspark and #Scala.
 
-With  #hermione-databricks you will be able to create the entire structure for your ML project using the databricks workspace to structure the notebooks, pipelines and the DBFS(Databricks File System) to handle with large volumns of data.
+With  #hermione-databricks you will be able to create the entire structure for your ML project using the databricks workspace to structure the notebooks, pipelines and the DBFS(Databricks File System) to handle with large volumns of data and the project artifacts.
 
-Hermione-databricks is it fully 
+When you start a new project with hermione-databricks, automatcly the bellow local/remote project structures will be created:
 
-When you start a new project with hermione-databricks, automatcly the bellow project structure is it created:
+<html>
+<table>
+<tr>
+<td> Local </td> <td> Remote </td>
+</tr>
+<tr>
+<td>
+
+Local project structure
+``` 
+.Current Dir
+├── project_name
+|   ├── README.ipynb
+|   ├── config.json
+|   ├── notebooks
+|   |   └── exploratory_analysis.ipynb
+|   ├── preprocessing
+|   |   └── preprocessing.ipynb
+|   └── model
+|       ├── Workspace
+|       |   └── model.ipynb
+|       └── DBFS 
+|           ├── input
+|           ├── output
+|           └── artifacts
+```
+
+
+</td>
+<td>
+
+Remote project structure
 ```
 .workspace
 ├── project_name
@@ -80,11 +111,22 @@ When you start a new project with hermione-databricks, automatcly the bellow pro
 dbfs:
 └── project_name
 |   └── model
-|       ├── model.pkl
 |       ├── input
 |       ├── output
 |       └── artifacts
 ```
+
+</td>
+</tr>
+</table>
+</html>
+
+It's important to note that they are not an exact mirror, the reason is the natural difference of local and remote environments,especially considering the DBFS.
+
+After create the project, you can sync the local remote files with the bellow functions:
+
+- ```hermione_databricks sync-local```  Sync local project(folders/notebooks/model.pkl).
+- ```hermione_databricks sync-remote``` Sync remote project(folders/notebooks/model.pkl).
 
 Requirements
 ------------
