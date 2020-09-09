@@ -42,7 +42,7 @@
         "service": "dbfs",
         "properties": {
           "source_path": "project_local_path/model/dbfs/input",
-          "path": "project_dbfs_pathmodel/input",
+          "path": "project_dbfs_path/model/input",
           "is_dir": true
         }
       },

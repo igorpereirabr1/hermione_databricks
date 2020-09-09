@@ -104,7 +104,7 @@ def new():
     project_workspace_path = click.prompt("Databricks Host Workspace path (sample:/Users/xxxx@xxxxxxxx.com/MyFirstProject)", default=None)
     project_workspace_path = os.path.join(project_workspace_path,project_name)
     project_dbfs_path = click.prompt("Databricks Host DBFS path (sample:dbfs:/Users/xxxx@xxxxxxxx.com/MyFirstProject)", default=project_workspace_path)
-    project_dbfs_path = os.path.join(project_dbfs_path,project_name)
+    project_dbfs_path =  os.path.join(project_dbfs_path,project_name)
     project_local_path = os.path.join(LOCAL_PATH, project_name)
     # Now create local files
     click.echo(f"Creating project {project_name}")
@@ -115,42 +115,42 @@ def new():
     # Start to create the project files
     
     # Readme file
-    souce_path = os.path.join(databricks_files_path,"README.ipynb")
+    souce_path = os.path.join(databricks_files_path,"README.txt")
     dst_path = os.path.join(project_local_path,'README.ipynb')
     kwargs = {"project_name":project_name
             ,"project_description":project_description
-            ,"project_workspace_path":project_workspace_path
-            ,"project_dbfs_path":project_dbfs_path}
+            ,"project_workspace_path":project_workspace_path.replace("\\","/")
+            ,"project_dbfs_path":project_dbfs_path.replace("\\","/")}
 
     write_local_files(souce_path,dst_path,**kwargs)
 
     # preprocessing Notebook
-    souce_path = os.path.join(databricks_files_path,"preprocessing.ipynb")
+    souce_path = os.path.join(databricks_files_path,"preprocessing.txt")
     dst_path = os.path.join(project_local_path,'preprocessing/preprocessing.ipynb')
     kwargs = {"project_name":project_name
-            ,"model_input_path":os.path.join(project_dbfs_path,'model/input/')
-            ,"model_output_path":os.path.join(project_dbfs_path,'model/output/')
-            ,"model_artifacts_path":os.path.join(project_dbfs_path,'model/artifacts/')}
+            ,"model_input_path":os.path.join(project_dbfs_path,'model/input/').replace("\\","/")
+            ,"model_output_path":os.path.join(project_dbfs_path,'model/output/').replace("\\","/")
+            ,"model_artifacts_path":os.path.join(project_dbfs_path,'model/artifacts/').replace("\\","/")}
 
     write_local_files(souce_path,dst_path,**kwargs)
 
     # exploratory_analysis Notebook
-    souce_path = os.path.join(databricks_files_path,"exploratory_analysis.ipynb")
+    souce_path = os.path.join(databricks_files_path,"exploratory_analysis.txt")
     dst_path = os.path.join(project_local_path,'notebooks/exploratory_analysis.ipynb')
     kwargs = {"project_name":project_name
-            ,"model_input_path":os.path.join(project_dbfs_path,'model/input/')
-            ,"model_output_path":os.path.join(project_dbfs_path,'model/output/')
-            ,"model_artifacts_path":os.path.join(project_dbfs_path,'model/artifacts/')}
+            ,"model_input_path":os.path.join(project_dbfs_path,'model/input/').replace("\\","/")
+            ,"model_output_path":os.path.join(project_dbfs_path,'model/output/').replace("\\","/")
+            ,"model_artifacts_path":os.path.join(project_dbfs_path,'model/artifacts/').replace("\\","/")}
 
     write_local_files(souce_path,dst_path,**kwargs)
 
     # model Notebook
-    souce_path = os.path.join(databricks_files_path,"model.ipynb")
+    souce_path = os.path.join(databricks_files_path,"model.txt")
     dst_path = os.path.join(project_local_path,'model/workspace/model.ipynb')
     kwargs = {"project_name":project_name
-            ,"model_input_path":os.path.join(project_dbfs_path,'model/input/')
-            ,"model_output_path":os.path.join(project_dbfs_path,'model/output/')
-            ,"model_artifacts_path":os.path.join(project_dbfs_path,'model/artifacts/')}
+            ,"model_input_path":os.path.join(project_dbfs_path,'model/input/').replace("\\","/")
+            ,"model_output_path":os.path.join(project_dbfs_path,'model/output/').replace("\\","/")
+            ,"model_artifacts_path":os.path.join(project_dbfs_path,'model/artifacts/').replace("\\","/")}
 
     write_local_files(souce_path,dst_path,**kwargs)
 
@@ -158,24 +158,17 @@ def new():
     souce_path = os.path.join(databricks_files_path,"stack_configuration.json")
     dst_path = os.path.join(project_local_path,'config.json')
     kwargs = {"project_name":project_name,
-          "project_local_path":project_local_path.replace("\\",'/'),
-          "project_workspace_path":project_workspace_path.replace("\\",'/'),
-          "project_dbfs_path":project_dbfs_path.replace("\\",'/')
+          "project_local_path":project_local_path.replace("\\","/"),
+          "project_workspace_path":project_workspace_path.replace("\\","/"),
+          "project_dbfs_path":project_dbfs_path.replace("\\","/")
          }
     # Need some fixes to use it
     write_local_files(souce_path,dst_path,**kwargs)
 
     #Upload project to Databricks
 
-    workspace_command = "databricks workspace import_dir "+project_local_path+" "+os.path.join(project_workspace_path,project_name) 
-    dbfs_command = "databricks workspace import_dir "+project_local_path+" "+os.path.join(project_workspace_path,project_name) 
-    #Commendt to test the changes localy
-    #os.system(workspace_command)
-    for path in ["artifacts","input","output"]:
-        dbfs_path = os.path.join(project_dbfs_path,project_name,"model",path)
-        dbfs_command = "databricks fs mkdirs "+dbfs_path
-        #Commendt to test the changes localy
-        #os.system(dbfs_command)
+    command = "databricks stack deploy "+ os.path.join(project_local_path,"config.json")+" -o"
+    os.system(command)
 
     # Local Folders from Databricks File System(DBFS)
     os.makedirs(os.path.join(project_local_path,'model/dbfs/input/'))#Databricks DBFS
@@ -189,14 +182,26 @@ def sync_local():
     """
     Create a new the Databricks ML Project, based on workspace and dbfs parameters
     """
-    pass
+    if os.path.exists("config.json"):
+        command = "databricks stack download config.json -o"
+        os.system(command)
+    else:
+        click.echo("There is no config.json file available in the current path")
+
+    return None
 
 @cli.command(short_help='Sync remote project(folders/notebooks/model.pkl).')
 def sync_remote():
     """
     Create a new the Databricks ML Project, based on workspace and dbfs parameters
     """
-    pass
+    if os.path.exists("config.json"):
+        command = "databricks stack deploy config.json -o"
+        os.system(command)
+    else:
+        click.echo("There is no config.json file available in the current path")
+        
+    return None
 
 @cli.command(short_help='Delete current project(local/remotely).')
 def delete():
