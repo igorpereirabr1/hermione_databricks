@@ -33,6 +33,29 @@ logo = r"""
                                                        """.format(version)
 
 
+class NaturalOrderGroup(click.Group):
+    # def __init__(self, name=None, commands=None, **attrs):
+    #     if commands is None:
+    #         commands = OrderedDict()
+    #     elif not isinstance(commands, OrderedDict):
+    #         commands = OrderedDict(commands)
+    #     click.Group.__init__(self, name=name,
+    #                          commands=commands,
+    #                          **attrs)
+
+    def list_commands(self, ctx):
+        return self.commands.keys()
+
+class _DbfsHost(ParamType):
+    """
+    Used to validate the configured host
+    """
+    def convert(self, value, param, ctx):
+        if value.startswith('https://'):
+            return value
+        else:
+            self.fail('The host does not start with https://')
+
 def _configure_cli_token(profile, insecure):
     PROMPT_HOST = 'Databricks Host (should begin with https://)'
     PROMPT_TOKEN = 'Token' #  NOQA
@@ -42,26 +65,24 @@ def _configure_cli_token(profile, insecure):
     new_config = DatabricksConfig.from_token(host, token, insecure)
     update_and_persist_config(profile, new_config)
 
-
-@click.group()
+@click.group(cls=NaturalOrderGroup)
 def cli():
     pass
-
 
 @cli.command()
 def info():
     """
-    Checks that hermione is correctly installed
+    Checks that hermione-databricks is correctly installed.
     """
-    click.echo(logo)
+    click.secho(logo, fg="yellow")
 
 @cli.command(context_settings=CONTEXT_SETTINGS,
-               short_help='Configures the Databricks CLI.')
+               short_help='Configures host and authentication info for Databricks CLI.')
 @click.option('--token', show_default=True, is_flag=True, default=True)
 @click.option('--insecure', show_default=True, is_flag=True, default=None)
 @debug_option
 @profile_option
-def databricks_config(token, insecure):
+def setup(token, insecure):
     """
     Configures host and authentication info for the Databricks CLI.
     """
@@ -72,8 +93,9 @@ def databricks_config(token, insecure):
     else:
         pass
 
+
 @cli.command(short_help='Create a new the Databricks ML Project. ')
-def new_databricks_project():
+def new():
     """
     Create a new the Databricks ML Project, based on workspace and dbfs parameters
     """
@@ -138,13 +160,22 @@ def new_databricks_project():
 
     return None
 
-        
-class _DbfsHost(ParamType):
+@cli.command(short_help='Sync local project(folders/notebooks/model.pkl).')
+def sync_local():
     """
-    Used to validate the configured host
+    Create a new the Databricks ML Project, based on workspace and dbfs parameters
     """
-    def convert(self, value, param, ctx):
-        if value.startswith('https://'):
-            return value
-        else:
-            self.fail('The host does not start with https://')
+    pass
+
+@cli.command(short_help='Sync remote project(folders/notebooks/model.pkl).')
+def sync_remote():
+    """
+    Create a new the Databricks ML Project, based on workspace and dbfs parameters
+    """
+    pass
+
+@cli.command(short_help='Delete current project(local/remotely).')
+def delete():
+    """
+    Create a new the Databricks ML Project, based on workspace and dbfs parameters
+    """
