@@ -175,6 +175,11 @@ def new():
     os.makedirs(os.path.join(project_local_path,'model/dbfs/output/'))#Databricks DBFS
     os.makedirs(os.path.join(project_local_path,'model/dbfs/artifacts/'))#Databricks DBFS
 
+    # Create git repo
+    os.chdir(project_local_path)
+    os.system('git init')
+    print("A git repository was created. You should add your files and make your first commit.\n")
+
     return None
 
 @cli.command(short_help='Sync local project(folders/notebooks/model.pkl).')
