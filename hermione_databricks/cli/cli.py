@@ -132,9 +132,9 @@ def new_databricks_project():
         os.system(dbfs_command)
 
     # Local Folders from Databricks File System(DBFS)
-    os.makedirs(os.path.join(project_local_path,'model/input/'))#Databricks DBFS
-    os.makedirs(os.path.join(project_local_path,'model/output/'))#Databricks DBFS
-    os.makedirs(os.path.join(project_local_path,'model/artifacts/'))#Databricks DBFS
+    os.makedirs(os.path.join(project_local_path,'dbfs/model/input/'))#Databricks DBFS
+    os.makedirs(os.path.join(project_local_path,'dbfs/model/output/'))#Databricks DBFS
+    os.makedirs(os.path.join(project_local_path,'dbfs/model/artifacts/'))#Databricks DBFS
 
     return None
 
