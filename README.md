@@ -87,7 +87,7 @@ Local project structure
 |   └── model
 |       ├── Workspace
 |       |   └── model.ipynb
-|       └── DBFS 
+|       └── dbfs 
 |           ├── input
 |           ├── output
 |           └── artifacts
