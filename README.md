@@ -100,7 +100,7 @@ To install simply run
 
 Then set up authentication using an `authentication token: <https://docs.databricks.com/api/latest/authentication.html#token-management>`_. Credentials are stored at ``~/.databrickscfg``.
 
-- ``hermione_databricks databricks-config`` (enter hostname/auth-token at prompt)
+- ``hermione_databricks setup`` (enter hostname/auth-token at prompt)
 
 To test that your authentication information is working, try a quick test like ``databricks workspace ls``.
 
@@ -111,14 +111,14 @@ After installed hermione-databricks:
 0.  Configure the Databricks autentication :
 
 ```
-hermione_databricks databricks-config
+hermione_databricks setup
 ```
 Here you need to specify the databricks host and the access token, The integration will be made using the official databricks-cli library.
 
 1. Starting a new databricks project
 
 ```
-hermione_databricks new-databricks-project
+hermione_databricks new
 ```
 Here the hermione-databricks will ask by the:
 - **Project Name:** your project name;
