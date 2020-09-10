@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 import click
 from click import ParamType
 import os
@@ -104,9 +106,9 @@ def new():
     """
     project_name = click.prompt("Project Name", default="My first Project")
     project_description = click.prompt("Project Description", default=project_name)
-    project_workspace_path = click.prompt("Databricks Host Workspace path (sample:/Users/xxxx@xxxxxxxx.com/MyFirstProject)", default=None)
+    project_workspace_path = click.prompt("Databricks Host Workspace path (sample:/Users/xxxx@xxxxxxxx.com/)", default=None)
     project_workspace_path = fix_path(os.path.join(project_workspace_path,project_name))
-    project_dbfs_path = click.prompt("Databricks Host DBFS path (sample:dbfs:/Users/xxxx@xxxxxxxx.com/MyFirstProject)", default=project_workspace_path)
+    project_dbfs_path = click.prompt("Databricks Host DBFS path (sample:dbfs:/Users/xxxx@xxxxxxxx.com/)", default=None)
     project_dbfs_path =  fix_path(os.path.join(project_dbfs_path,project_name))
     project_local_path = fix_path(os.path.join(LOCAL_PATH, project_name))
     # Now create local files
@@ -114,6 +116,11 @@ def new():
     # Folders from Databricks Workspace
     os.makedirs(os.path.join(project_local_path,'model/workspace'))#Databricks Workspace
     os.makedirs(os.path.join(project_local_path,'notebooks'))#Databricks Workspace
+
+    # Local Folders from Databricks File System(DBFS)
+    os.makedirs(os.path.join(project_local_path,'model/dbfs/input/'))#Databricks DBFS
+    os.makedirs(os.path.join(project_local_path,'model/dbfs/output/'))#Databricks DBFS
+    os.makedirs(os.path.join(project_local_path,'model/dbfs/artifacts/'))#Databricks DBFS
 
     # Start to create the project files
     
@@ -131,9 +138,9 @@ def new():
     souce_path = os.path.join(databricks_files_path,"preprocessing.txt")
     dst_path = os.path.join(project_local_path,'preprocessing/preprocessing.ipynb')
     kwargs = {"project_name":project_name
-            ,"model_input_path":os.path.join(project_dbfs_path,'model/input/')
-            ,"model_output_path":os.path.join(project_dbfs_path,'model/output/')
-            ,"model_artifacts_path":os.path.join(project_dbfs_path,'model/artifacts/')}
+            ,"model_input_path":fix_path(os.path.join(project_dbfs_path,'model/input/'))
+            ,"model_output_path":fix_path(os.path.join(project_dbfs_path,'model/output/'))
+            ,"model_artifacts_path":fix_path(os.path.join(project_dbfs_path,'model/artifacts/'))}
 
     write_local_files(souce_path,dst_path,**kwargs)
 
@@ -141,9 +148,9 @@ def new():
     souce_path = os.path.join(databricks_files_path,"exploratory_analysis.txt")
     dst_path = os.path.join(project_local_path,'notebooks/exploratory_analysis.ipynb')
     kwargs = {"project_name":project_name
-            ,"model_input_path":os.path.join(project_dbfs_path,'model/input/')
-            ,"model_output_path":os.path.join(project_dbfs_path,'model/output/')
-            ,"model_artifacts_path":os.path.join(project_dbfs_path,'model/artifacts/')}
+            ,"model_input_path":fix_path(os.path.join(project_dbfs_path,'model/input/'))
+            ,"model_output_path":fix_path(os.path.join(project_dbfs_path,'model/output/'))
+            ,"model_artifacts_path":fix_path(os.path.join(project_dbfs_path,'model/artifacts/'))}
 
     write_local_files(souce_path,dst_path,**kwargs)
 
@@ -151,9 +158,9 @@ def new():
     souce_path = os.path.join(databricks_files_path,"model.txt")
     dst_path = os.path.join(project_local_path,'model/workspace/model.ipynb')
     kwargs = {"project_name":project_name
-            ,"model_input_path":os.path.join(project_dbfs_path,'model/input/')
-            ,"model_output_path":os.path.join(project_dbfs_path,'model/output/')
-            ,"model_artifacts_path":os.path.join(project_dbfs_path,'model/artifacts/')}
+            ,"model_input_path":fix_path(os.path.join(project_dbfs_path,'model/input/'))
+            ,"model_output_path":fix_path(os.path.join(project_dbfs_path,'model/output/'))
+            ,"model_artifacts_path":fix_path(os.path.join(project_dbfs_path,'model/artifacts/'))}
 
     write_local_files(souce_path,dst_path,**kwargs)
 
@@ -173,10 +180,6 @@ def new():
     command = "databricks stack deploy "+ os.path.join(project_local_path,"config.json")+" -o"
     os.system(command)
 
-    # Local Folders from Databricks File System(DBFS)
-    os.makedirs(os.path.join(project_local_path,'model/dbfs/input/'))#Databricks DBFS
-    os.makedirs(os.path.join(project_local_path,'model/dbfs/output/'))#Databricks DBFS
-    os.makedirs(os.path.join(project_local_path,'model/dbfs/artifacts/'))#Databricks DBFS
 
     # Create git repo
     os.chdir(project_local_path)
@@ -185,10 +188,10 @@ def new():
 
     return None
 
-@cli.command(short_help='Sync local project(folders/notebooks/model.pkl).')
+@cli.command(short_help='Sync the remote changes to the local repository(pull).')
 def sync_local():
     """
-    Create a new the Databricks ML Project, based on workspace and dbfs parameters
+    Pull the remote changes to the local repository
     """
     if os.path.exists("config.json"):
         command = "databricks stack download config.json -o"
@@ -198,10 +201,10 @@ def sync_local():
 
     return None
 
-@cli.command(short_help='Sync remote project(folders/notebooks/model.pkl).')
+@cli.command(short_help='Sync the local changes to the remote repository(push).')
 def sync_remote():
     """
-    Create a new the Databricks ML Project, based on workspace and dbfs parameters
+    Push the local changes to the remote repository
     """
     if os.path.exists("config.json"):
         command = "databricks stack deploy config.json -o"
@@ -211,8 +214,8 @@ def sync_remote():
         
     return None
 
-@cli.command(short_help='Delete current project(local/remotely).')
-def delete():
-    """
-    Create a new the Databricks ML Project, based on workspace and dbfs parameters
-    """
+#@cli.command(short_help='Delete current project(local/remotely).')
+#def delete():
+#    """
+#    Create a new the Databricks ML Project, based on workspace and dbfs parameters
+#    """
