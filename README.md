@@ -170,6 +170,20 @@ Here the hermione-databricks will ask by the:
 
 ![step_by_step](images/hermione_databricks_new_project.png)
 
+After This, you can see the project files localy:
+
+![step_by_step](images/hermione_databricks_new_project_2.png)
+
+Databricks Wokspace (Databricks CLI):
+
+![step_by_step](images/hermione_databricks_new_project_3.png)
+
+Databricks Wokspace (Databricks Web Interface):
+
+![step_by_step](images/hermione_databricks_new_project_4.png)
+
+
+
 ## Contributing
 
   Make a pull request with your implementation.
