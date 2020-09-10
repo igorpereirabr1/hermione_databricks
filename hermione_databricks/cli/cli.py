@@ -56,6 +56,9 @@ class _DbfsHost(ParamType):
         else:
             self.fail('The host does not start with https://')
 
+def fix_path(path):
+    return str(path).replace("\\","/")
+
 def _configure_cli_token(profile, insecure):
     PROMPT_HOST = 'Databricks Host (should begin with https://)'
     PROMPT_TOKEN = 'Token' #  NOQA
@@ -102,10 +105,10 @@ def new():
     project_name = click.prompt("Project Name", default="My first Project")
     project_description = click.prompt("Project Description", default=project_name)
     project_workspace_path = click.prompt("Databricks Host Workspace path (sample:/Users/xxxx@xxxxxxxx.com/MyFirstProject)", default=None)
-    project_workspace_path = os.path.join(project_workspace_path,project_name)
+    project_workspace_path = fix_path(os.path.join(project_workspace_path,project_name))
     project_dbfs_path = click.prompt("Databricks Host DBFS path (sample:dbfs:/Users/xxxx@xxxxxxxx.com/MyFirstProject)", default=project_workspace_path)
-    project_dbfs_path =  os.path.join(project_dbfs_path,project_name)
-    project_local_path = os.path.join(LOCAL_PATH, project_name)
+    project_dbfs_path =  fix_path(os.path.join(project_dbfs_path,project_name))
+    project_local_path = fix_path(os.path.join(LOCAL_PATH, project_name))
     # Now create local files
     click.echo(f"Creating project {project_name}")
     # Folders from Databricks Workspace
@@ -119,8 +122,8 @@ def new():
     dst_path = os.path.join(project_local_path,'README.ipynb')
     kwargs = {"project_name":project_name
             ,"project_description":project_description
-            ,"project_workspace_path":project_workspace_path.replace("\\","/")
-            ,"project_dbfs_path":project_dbfs_path.replace("\\","/")}
+            ,"project_workspace_path":project_workspace_path
+            ,"project_dbfs_path":project_dbfs_path}
 
     write_local_files(souce_path,dst_path,**kwargs)
 
@@ -128,9 +131,9 @@ def new():
     souce_path = os.path.join(databricks_files_path,"preprocessing.txt")
     dst_path = os.path.join(project_local_path,'preprocessing/preprocessing.ipynb')
     kwargs = {"project_name":project_name
-            ,"model_input_path":os.path.join(project_dbfs_path,'model/input/').replace("\\","/")
-            ,"model_output_path":os.path.join(project_dbfs_path,'model/output/').replace("\\","/")
-            ,"model_artifacts_path":os.path.join(project_dbfs_path,'model/artifacts/').replace("\\","/")}
+            ,"model_input_path":os.path.join(project_dbfs_path,'model/input/')
+            ,"model_output_path":os.path.join(project_dbfs_path,'model/output/')
+            ,"model_artifacts_path":os.path.join(project_dbfs_path,'model/artifacts/')}
 
     write_local_files(souce_path,dst_path,**kwargs)
 
@@ -138,9 +141,9 @@ def new():
     souce_path = os.path.join(databricks_files_path,"exploratory_analysis.txt")
     dst_path = os.path.join(project_local_path,'notebooks/exploratory_analysis.ipynb')
     kwargs = {"project_name":project_name
-            ,"model_input_path":os.path.join(project_dbfs_path,'model/input/').replace("\\","/")
-            ,"model_output_path":os.path.join(project_dbfs_path,'model/output/').replace("\\","/")
-            ,"model_artifacts_path":os.path.join(project_dbfs_path,'model/artifacts/').replace("\\","/")}
+            ,"model_input_path":os.path.join(project_dbfs_path,'model/input/')
+            ,"model_output_path":os.path.join(project_dbfs_path,'model/output/')
+            ,"model_artifacts_path":os.path.join(project_dbfs_path,'model/artifacts/')}
 
     write_local_files(souce_path,dst_path,**kwargs)
 
@@ -148,9 +151,9 @@ def new():
     souce_path = os.path.join(databricks_files_path,"model.txt")
     dst_path = os.path.join(project_local_path,'model/workspace/model.ipynb')
     kwargs = {"project_name":project_name
-            ,"model_input_path":os.path.join(project_dbfs_path,'model/input/').replace("\\","/")
-            ,"model_output_path":os.path.join(project_dbfs_path,'model/output/').replace("\\","/")
-            ,"model_artifacts_path":os.path.join(project_dbfs_path,'model/artifacts/').replace("\\","/")}
+            ,"model_input_path":os.path.join(project_dbfs_path,'model/input/')
+            ,"model_output_path":os.path.join(project_dbfs_path,'model/output/')
+            ,"model_artifacts_path":os.path.join(project_dbfs_path,'model/artifacts/')}
 
     write_local_files(souce_path,dst_path,**kwargs)
 
@@ -158,9 +161,9 @@ def new():
     souce_path = os.path.join(databricks_files_path,"stack_configuration.json")
     dst_path = os.path.join(project_local_path,'config.json')
     kwargs = {"project_name":project_name,
-          "project_local_path":project_local_path.replace("\\","/"),
-          "project_workspace_path":project_workspace_path.replace("\\","/"),
-          "project_dbfs_path":project_dbfs_path.replace("\\","/")
+          "project_local_path":project_local_path,
+          "project_workspace_path":project_workspace_path,
+          "project_dbfs_path":project_dbfs_path
          }
     # Need some fixes to use it
     write_local_files(souce_path,dst_path,**kwargs)
