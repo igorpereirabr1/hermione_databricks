@@ -6,6 +6,9 @@ import os
 with open('README.md', encoding='utf-8') as f:
     long_description = f.read()
 
+with open("requirements.txt") as f:
+    requirements = f.read().splitlines()
+
 exec(open('hermione_databricks/version.py').read())
 
 setup(
@@ -29,10 +32,7 @@ setup(
       ],
       keywords='machine learning mlops devops artificial intelligence',
       license='Apache License 2.0',
-    install_requires=[
-        'Click',
-        'conda'
-    ],
+      install_requires=requirements,
     entry_points='''
         [console_scripts]
         hermione_databricks=hermione_databricks.cli.cli:cli

@@ -1,5 +1,3 @@
 butterfree
 databricks-cli
-click
-markdown
-#mlflow[extras]
+Click
