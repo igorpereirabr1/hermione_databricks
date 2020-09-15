@@ -67,7 +67,6 @@ With  #hermione-databricks you will be able to create the entire structure for y
 When you start a new project with hermione-databricks, automatcly the bellow local/remote project structures will be created:
 
 <html>
-<center>
 <table style="border-collapse: collapse; width: 100%;" border="1">
 <tbody>
 <tr>
@@ -76,7 +75,6 @@ When you start a new project with hermione-databricks, automatcly the bellow loc
 </tr>
 <tr>
 <td style="width: 50%; line-height: 3px;page-break-inside: avoid;">
-<p></p>
 <p style="line-height: 3px;">.Current Dir</p>
 <p style="line-height: 3px;"><g-emoji class="g-emoji" alias="open_file_folder" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/1f4c2.png">📂</g-emoji>project_name</p>
 <p style="line-height: 3px;">┣ <g-emoji class="g-emoji" alias="scroll" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/1f4dc.png">📜</g-emoji> <a href="hermione_databricks\databricks_file_text\README.ipynb">README.ipynb</a></p>
@@ -94,7 +92,6 @@ When you start a new project with hermione-databricks, automatcly the bellow loc
 <p style="line-height: 3px;">&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; ┗<g-emoji class="g-emoji" alias="open_file_folder" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/1f4c2.png">📂</g-emoji>artifacts</p>
 </td>
 <td style="width: 50%; line-height: 3px;page-break-inside: avoid;">
-<p></p>
 <p style="line-height: 3px;">.Workspace</p>
 <p style="line-height: 3px;"><g-emoji class="g-emoji" alias="open_file_folder" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/1f4c2.png">📂</g-emoji>project_name</p>
 <p style="line-height: 3px;">┣ <g-emoji class="g-emoji" alias="scroll" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/1f4dc.png">📜</g-emoji> <a href="hermione_databricks\databricks_file_text\README.ipynb">README.ipynb</a></p>
@@ -114,8 +111,6 @@ When you start a new project with hermione-databricks, automatcly the bellow loc
 </tr>
 </tbody>
 </table>
-<p></p>
-</center>
 </html>
 
 It's important to note that they are not an exact mirror, the reason is the natural difference of local and remote environments,especially considering the DBFS.
