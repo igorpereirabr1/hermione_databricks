@@ -94,6 +94,7 @@ When you start a new project with hermione-databricks, automatcly the bellow loc
 <p style="line-height: 3px;">&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; ┗<g-emoji class="g-emoji" alias="open_file_folder" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/1f4c2.png">📂</g-emoji>artifacts</p>
 </td>
 <td style="width: 50%; line-height: 3px;page-break-inside: avoid;">
+<p></p>
 <p style="line-height: 3px;">.Workspace</p>
 <p style="line-height: 3px;"><g-emoji class="g-emoji" alias="open_file_folder" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/1f4c2.png">📂</g-emoji>project_name</p>
 <p style="line-height: 3px;">┣ <g-emoji class="g-emoji" alias="scroll" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/1f4dc.png">📜</g-emoji> <a href="hermione_databricks\databricks_file_text\README.ipynb">README.ipynb</a></p>
