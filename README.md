@@ -67,11 +67,12 @@ With  #hermione-databricks you will be able to create the entire structure for y
 When you start a new project with hermione-databricks, automatcly the bellow local/remote project structures will be created:
 
 <html>
-<table style="border-collapse: collapse; width: 100%;" border="1">
+<center>
+<table style="border-collapse: collapse; width: 100%;" border="1";>
 <tbody>
 <tr>
-<td style="width: 50%; text-align: center;"><strong>Local(💻)</strong></td>
-<td style="width: 50%; text-align: center;"><strong>Remote - Databricks(☁️)</strong></td>
+<td style="width: 50%; text-align: center;line-height: 5px;"><strong>Local(💻)</strong></td>
+<td style="width: 50%; text-align: center; line-height: 5px;"><strong>Remote - Databricks(☁️)</strong></td>
 </tr>
 <tr>
 <td style="width: 50%; line-height: 3px;">
@@ -112,6 +113,7 @@ When you start a new project with hermione-databricks, automatcly the bellow loc
 </tbody>
 </table>
 <p></p>
+</center>
 </html>
 
 It's important to note that they are not an exact mirror, the reason is the natural difference of local and remote environments,especially considering the DBFS.
