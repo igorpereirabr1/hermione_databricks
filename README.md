@@ -94,6 +94,7 @@ When you start a new project with hermione-databricks, automatcly the bellow loc
 <p>┗&nbsp;&nbsp; ┗&nbsp;&nbsp; ┗📂artifacts</p>
 </td>
 <td style="width: 450px; line-height: 8px; height: 162px;">
+<p>.Databricks</p>
 <p>.Workspace</p>
 <p>📂project_name</p>
 <p>┣ 📜 <a href="hermione_databricks\databricks_file_text\README.ipynb">README.ipynb</a></p>
