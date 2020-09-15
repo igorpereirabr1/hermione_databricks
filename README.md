@@ -77,38 +77,38 @@ When you start a new project with hermione-databricks, automatcly the bellow loc
 <tr>
 <td style="width: 50%; line-height: 3px;page-break-inside: avoid;">
 <p></p>
-<p>.Current Dir</p>
-<p><g-emoji class="g-emoji" alias="open_file_folder" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/1f4c2.png">📂</g-emoji>project_name</p>
-<p>┣ <g-emoji class="g-emoji" alias="scroll" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/1f4dc.png">📜</g-emoji> <a href="hermione_databricks\databricks_file_text\README.ipynb">README.ipynb</a></p>
-<p>┣ <g-emoji class="g-emoji" alias="scroll" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/1f4dc.png">📜</g-emoji> <a href="hermione_databricks\databricks_file_text\stack_configuration.json">config.json</a></p>
-<p>┣ <g-emoji class="g-emoji" alias="open_file_folder" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/1f4c2.png">📂</g-emoji>notebooks</p>
-<p>&nbsp;&nbsp; ┗<g-emoji class="g-emoji" alias="scroll" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/1f4dc.png">📜</g-emoji><a href="hermione_databricks\databricks_file_text\exploratory_analysis.ipynb">exploratory_analysis.ipynb</a></p>
-<p>┣<g-emoji class="g-emoji" alias="open_file_folder" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/1f4c2.png">📂</g-emoji>preprocessing</p>
-<p>&nbsp;&nbsp; ┗<g-emoji class="g-emoji" alias="scroll" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/1f4dc.png">📜</g-emoji><a href="hermione_databricks\databricks_file_text\preprocessing.ipynb">preprocessing.ipynb</a></p>
-<p>┗<g-emoji class="g-emoji" alias="open_file_folder" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/1f4c2.png">📂</g-emoji>model</p>
-<p>&nbsp;&nbsp; ┗<g-emoji class="g-emoji" alias="open_file_folder" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/1f4c2.png">📂</g-emoji>Workspace</p>
-<p>&nbsp;&nbsp; ┗<g-emoji class="g-emoji" alias="scroll" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/1f4dc.png">📜</g-emoji><a href="hermione_databricks\databricks_file_text\model.ipynb">model.ipynb</a></p>
-<p>&nbsp;&nbsp; ┗<g-emoji class="g-emoji" alias="open_file_folder" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/1f4c2.png">📂</g-emoji>dbfs</p>
-<p>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; ┗<g-emoji class="g-emoji" alias="open_file_folder" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/1f4c2.png">📂</g-emoji>input</p>
-<p>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; ┗<g-emoji class="g-emoji" alias="open_file_folder" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/1f4c2.png">📂</g-emoji>output</p>
-<p>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; ┗<g-emoji class="g-emoji" alias="open_file_folder" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/1f4c2.png">📂</g-emoji>artifacts</p>
+<p style="line-height: 3px;">.Current Dir</p>
+<p style="line-height: 3px;"><g-emoji class="g-emoji" alias="open_file_folder" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/1f4c2.png">📂</g-emoji>project_name</p>
+<p style="line-height: 3px;">┣ <g-emoji class="g-emoji" alias="scroll" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/1f4dc.png">📜</g-emoji> <a href="hermione_databricks\databricks_file_text\README.ipynb">README.ipynb</a></p>
+<p style="line-height: 3px;">┣ <g-emoji class="g-emoji" alias="scroll" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/1f4dc.png">📜</g-emoji> <a href="hermione_databricks\databricks_file_text\stack_configuration.json">config.json</a></p>
+<p style="line-height: 3px;">┣ <g-emoji class="g-emoji" alias="open_file_folder" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/1f4c2.png">📂</g-emoji>notebooks</p>
+<p style="line-height: 3px;">&nbsp;&nbsp; ┗<g-emoji class="g-emoji" alias="scroll" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/1f4dc.png">📜</g-emoji><a href="hermione_databricks\databricks_file_text\exploratory_analysis.ipynb">exploratory_analysis.ipynb</a></p>
+<p style="line-height: 3px;">┣<g-emoji class="g-emoji" alias="open_file_folder" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/1f4c2.png">📂</g-emoji>preprocessing</p>
+<p style="line-height: 3px;">&nbsp;&nbsp; ┗<g-emoji class="g-emoji" alias="scroll" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/1f4dc.png">📜</g-emoji><a href="hermione_databricks\databricks_file_text\preprocessing.ipynb">preprocessing.ipynb</a></p>
+<p style="line-height: 3px;">┗<g-emoji class="g-emoji" alias="open_file_folder" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/1f4c2.png">📂</g-emoji>model</p>
+<p style="line-height: 3px;">&nbsp;&nbsp; ┗<g-emoji class="g-emoji" alias="open_file_folder" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/1f4c2.png">📂</g-emoji>Workspace</p>
+<p style="line-height: 3px;">&nbsp;&nbsp; ┗<g-emoji class="g-emoji" alias="scroll" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/1f4dc.png">📜</g-emoji><a href="hermione_databricks\databricks_file_text\model.ipynb">model.ipynb</a></p>
+<p style="line-height: 3px;">&nbsp;&nbsp; ┗<g-emoji class="g-emoji" alias="open_file_folder" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/1f4c2.png">📂</g-emoji>dbfs</p>
+<p style="line-height: 3px;">&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; ┗<g-emoji class="g-emoji" alias="open_file_folder" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/1f4c2.png">📂</g-emoji>input</p>
+<p style="line-height: 3px;">&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; ┗<g-emoji class="g-emoji" alias="open_file_folder" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/1f4c2.png">📂</g-emoji>output</p>
+<p style="line-height: 3px;">&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; ┗<g-emoji class="g-emoji" alias="open_file_folder" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/1f4c2.png">📂</g-emoji>artifacts</p>
 </td>
 <td style="width: 50%; line-height: 3px;page-break-inside: avoid;">
-<p>.Workspace</p>
-<p><g-emoji class="g-emoji" alias="open_file_folder" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/1f4c2.png">📂</g-emoji>project_name</p>
-<p>┣ <g-emoji class="g-emoji" alias="scroll" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/1f4dc.png">📜</g-emoji> <a href="hermione_databricks\databricks_file_text\README.ipynb">README.ipynb</a></p>
-<p>┣ <g-emoji class="g-emoji" alias="open_file_folder" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/1f4c2.png">📂</g-emoji>notebooks</p>
-<p>&nbsp;&nbsp; ┗<g-emoji class="g-emoji" alias="scroll" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/1f4dc.png">📜</g-emoji><a href="hermione_databricks\databricks_file_text\exploratory_analysis.ipynb">exploratory_analysis.ipynb</a></p>
-<p>┣<g-emoji class="g-emoji" alias="open_file_folder" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/1f4c2.png">📂</g-emoji>preprocessing</p>
-<p>&nbsp;&nbsp; ┗<g-emoji class="g-emoji" alias="scroll" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/1f4dc.png">📜</g-emoji><a href="hermione_databricks\databricks_file_text\preprocessing.ipynb">preprocessing.ipynb</a></p>
-<p>┗<g-emoji class="g-emoji" alias="open_file_folder" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/1f4c2.png">📂</g-emoji>model</p>
-<p>&nbsp;&nbsp; ┗<g-emoji class="g-emoji" alias="scroll" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/1f4dc.png">📜</g-emoji><a href="hermione_databricks\databricks_file_text\model.ipynb">model.ipynb</a></p>
-<p></p>
-<p>.dbfs:</p>
-<p><g-emoji class="g-emoji" alias="open_file_folder" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/1f4c2.png">📂</g-emoji>project_name</p>
-<p>&nbsp;&nbsp; ┗<g-emoji class="g-emoji" alias="open_file_folder" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/1f4c2.png">📂</g-emoji>input</p>
-<p>&nbsp;&nbsp; ┗<g-emoji class="g-emoji" alias="open_file_folder" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/1f4c2.png">📂</g-emoji>output</p>
-<p>&nbsp;&nbsp; ┗<g-emoji class="g-emoji" alias="open_file_folder" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/1f4c2.png">📂</g-emoji>artifacts</p>
+<p style="line-height: 3px;">.Workspace</p>
+<p style="line-height: 3px;"><g-emoji class="g-emoji" alias="open_file_folder" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/1f4c2.png">📂</g-emoji>project_name</p>
+<p style="line-height: 3px;">┣ <g-emoji class="g-emoji" alias="scroll" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/1f4dc.png">📜</g-emoji> <a href="hermione_databricks\databricks_file_text\README.ipynb">README.ipynb</a></p>
+<p style="line-height: 3px;">┣ <g-emoji class="g-emoji" alias="open_file_folder" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/1f4c2.png">📂</g-emoji>notebooks</p>
+<p style="line-height: 3px;">&nbsp;&nbsp; ┗<g-emoji class="g-emoji" alias="scroll" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/1f4dc.png">📜</g-emoji><a href="hermione_databricks\databricks_file_text\exploratory_analysis.ipynb">exploratory_analysis.ipynb</a></p>
+<p style="line-height: 3px;">┣<g-emoji class="g-emoji" alias="open_file_folder" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/1f4c2.png">📂</g-emoji>preprocessing</p>
+<p style="line-height: 3px;">&nbsp;&nbsp; ┗<g-emoji class="g-emoji" alias="scroll" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/1f4dc.png">📜</g-emoji><a href="hermione_databricks\databricks_file_text\preprocessing.ipynb">preprocessing.ipynb</a></p>
+<p style="line-height: 3px;">┗<g-emoji class="g-emoji" alias="open_file_folder" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/1f4c2.png">📂</g-emoji>model</p>
+<p style="line-height: 3px;">&nbsp;&nbsp; ┗<g-emoji class="g-emoji" alias="scroll" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/1f4dc.png">📜</g-emoji><a href="hermione_databricks\databricks_file_text\model.ipynb">model.ipynb</a></p>
+<p style="line-height: 3px;"></p>
+<p style="line-height: 3px;">.dbfs:</p>
+<p style="line-height: 3px;"><g-emoji class="g-emoji" alias="open_file_folder" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/1f4c2.png">📂</g-emoji>project_name</p>
+<p style="line-height: 3px;">&nbsp;&nbsp; ┗<g-emoji class="g-emoji" alias="open_file_folder" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/1f4c2.png">📂</g-emoji>input</p>
+<p style="line-height: 3px;">&nbsp;&nbsp; ┗<g-emoji class="g-emoji" alias="open_file_folder" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/1f4c2.png">📂</g-emoji>output</p>
+<p style="line-height: 3px;">&nbsp;&nbsp; ┗<g-emoji class="g-emoji" alias="open_file_folder" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/1f4c2.png">📂</g-emoji>artifacts</p>
 </td>
 </tr>
 </tbody>
