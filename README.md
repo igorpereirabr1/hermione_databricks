@@ -67,58 +67,54 @@ With  #hermione-databricks you will be able to create the entire structure for y
 When you start a new project with hermione-databricks, automatcly the bellow local/remote project structures will be created:
 
 <html>
-<table>
-<tr>
-<td> Local </td> <td> Remote </td>
+<div>
+<div><a href="hermione_databricks\databricks_file_text\pre.ipynb"></a>
+<table style="width: 576px;">
+<tbody>
+<tr style="height: 30px;">
+<td style="width: 320px; line-height: 30px; height: 30px;">Local</td>
+<td style="width: 320px; line-height: 30px; height: 30px;">Remote</td>
 </tr>
-<tr>
-<td>
-
-Local project structure
-``` 
-.Current Dir
-├── project_name
-|   ├── README.ipynb
-|   ├── config.json
-|   ├── notebooks
-|   |   └── exploratory_analysis.ipynb
-|   ├── preprocessing
-|   |   └── preprocessing.ipynb
-|   └── model
-|       ├── Workspace
-|       |   └── model.ipynb
-|       └── dbfs 
-|           ├── input
-|           ├── output
-|           └── artifacts
-```
-
-
+<tr style="height: 162px;">
+<td style="width: 320px; line-height: 8px; height: 162px;">
+<p>.Current Dir</p>
+<p>📂project_name</p>
+<p>┣ 📜 <a href="hermione_databricks\databricks_file_text\README.ipynb">README.ipynb</a></p>
+<p>┣ 📜 <a href="hermione_databricks\databricks_file_text\stack_configuration.json">config.json</a></p>
+<p>┣ 📂notebooks</p>
+<p>┃&nbsp;&nbsp; ┗📜<a href="hermione_databricks\databricks_file_text\exploratory_analysis.ipynb">exploratory_analysis.ipynb</a></p>
+<p>┣📂preprocessing</p>
+<p>┃&nbsp;&nbsp; ┗📜<a href="hermione_databricks\databricks_file_text\preprocessing.ipynb">preprocessing.ipynb</a></p>
+<p>┗📂model</p>
+<p>┃&nbsp;&nbsp; ┗📂Workspace</p>
+<p>┃&nbsp;&nbsp;&nbsp;┃ &nbsp;&nbsp; ┗📜<a href="hermione_databricks\databricks_file_text\model.ipynb">model.ipynb</a></p>
+<p>┃&nbsp;&nbsp; ┗📂dbfs</p>
+<p>┃&nbsp;&nbsp;&nbsp;┃&nbsp;&nbsp; ┗📂input</p>
+<p>┃&nbsp;&nbsp;&nbsp;┃&nbsp;&nbsp; ┗📂output</p>
+<p>┗&nbsp;&nbsp; ┗&nbsp;&nbsp; ┗📂artifacts</p>
 </td>
-<td>
-
-Remote project structure
-```
-.Workspace
-├── project_name
-|   ├── README.ipynb
-|   ├── model
-|   |   └── model.ipynb
-|   ├── notebooks
-|   |   └── exploratory_analysis.ipynb
-|   ├── preprocessing
-|   |   └── preprocessing.ipynb
-dbfs:
-└── project_name
-|   └── model
-|       ├── input
-|       ├── output
-|       └── artifacts
-```
-
+<td style="width: 320px; line-height: 8px; height: 162px;">
+<p>.Workspace</p>
+<p>📂project_name</p>
+<p>┣ 📜 <a href="hermione_databricks\databricks_file_text\README.ipynb">README.ipynb</a></p>
+<p>┣ 📂notebooks</p>
+<p>┃&nbsp;&nbsp; ┗📜<a href="hermione_databricks\databricks_file_text\exploratory_analysis.ipynb">exploratory_analysis.ipynb</a></p>
+<p>┣📂preprocessing</p>
+<p>┃&nbsp;&nbsp; ┗📜<a href="hermione_databricks\databricks_file_text\preprocessing.ipynb">preprocessing.ipynb</a></p>
+<p>┗📂model</p>
+<p>┗&nbsp;&nbsp; ┗📜<a href="hermione_databricks\databricks_file_text\model.ipynb">model.ipynb</a></p>
+<p></p>
+<p>.dbfs:</p>
+<p>📂project_name</p>
+<p>┃&nbsp;&nbsp; ┗📂input</p>
+<p>┃&nbsp;&nbsp; ┗📂output</p>
+<p>┗&nbsp;&nbsp; ┗📂artifacts</p>
 </td>
 </tr>
+</tbody>
 </table>
+</div>
+</div>
 </html>
 
 It's important to note that they are not an exact mirror, the reason is the natural difference of local and remote environments,especially considering the DBFS.
