@@ -69,11 +69,11 @@ When you start a new project with hermione-databricks, automatcly the bellow loc
 <html>
 <div>
 <div><a href="hermione_databricks\databricks_file_text\pre.ipynb"></a>
-<table style="width: 576px;">
+<table style="width: 800px;">
 <tbody>
 <tr style="height: 30px;">
-<td style="width: 320px; line-height: 30px; height: 30px;">Local</td>
-<td style="width: 320px; line-height: 30px; height: 30px;">Remote</td>
+<td style="width: 400px; line-height: 30px; height: 30px;">Local</td>
+<td style="width: 400px; line-height: 30px; height: 30px;">Remote</td>
 </tr>
 <tr style="height: 162px;">
 <td style="width: 320px; line-height: 8px; height: 162px;">
