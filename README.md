@@ -75,7 +75,7 @@ When you start a new project with hermione-databricks, automatcly the bellow loc
 <td style="width: 50%; text-align: center; line-height: 5px;"><strong>Remote - Databricks(☁️)</strong></td>
 </tr>
 <tr>
-<td style="width: 50%; line-height: 3px;">
+<td style="width: 50%; line-height: 3px;page-break-inside: avoid;">
 <p></p>
 <p>.Current Dir</p>
 <p><g-emoji class="g-emoji" alias="open_file_folder" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/1f4c2.png">📂</g-emoji>project_name</p>
@@ -93,7 +93,7 @@ When you start a new project with hermione-databricks, automatcly the bellow loc
 <p>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; ┗<g-emoji class="g-emoji" alias="open_file_folder" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/1f4c2.png">📂</g-emoji>output</p>
 <p>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; ┗<g-emoji class="g-emoji" alias="open_file_folder" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/1f4c2.png">📂</g-emoji>artifacts</p>
 </td>
-<td style="width: 50%; line-height: 3px;">
+<td style="width: 50%; line-height: 3px;page-break-inside: avoid;">
 <p>.Workspace</p>
 <p><g-emoji class="g-emoji" alias="open_file_folder" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/1f4c2.png">📂</g-emoji>project_name</p>
 <p>┣ <g-emoji class="g-emoji" alias="scroll" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/1f4dc.png">📜</g-emoji> <a href="hermione_databricks\databricks_file_text\README.ipynb">README.ipynb</a></p>
