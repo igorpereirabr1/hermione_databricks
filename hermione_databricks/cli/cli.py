@@ -8,13 +8,13 @@ from databricks_cli.configure.provider import DatabricksConfig, update_and_persi
 from databricks_cli.utils import CONTEXT_SETTINGS
 from databricks_cli.configure.config import profile_option, get_profile_from_context, debug_option
 from databricks_cli.workspace.api import WorkspaceApi
-from hermione_databricks.project.writer import *
+from hermione_databricks.project.writer import write_local_files
 from hermione_databricks.__init__ import __version__ as version
-import hermione_databricks
+import hermione_databricks as herm
 
 
 LOCAL_PATH = os.getcwd()
-lib_path = hermione_databricks.__path__[0]
+lib_path = herm.__path__[0]
 databricks_files_path = os.path.join(lib_path,"databricks_file_text")
 
 
@@ -36,14 +36,6 @@ logo = r"""
 
 
 class NaturalOrderGroup(click.Group):
-    # def __init__(self, name=None, commands=None, **attrs):
-    #     if commands is None:
-    #         commands = OrderedDict()
-    #     elif not isinstance(commands, OrderedDict):
-    #         commands = OrderedDict(commands)
-    #     click.Group.__init__(self, name=name,
-    #                          commands=commands,
-    #                          **attrs)
 
     def list_commands(self, ctx):
         return self.commands.keys()
@@ -72,6 +64,9 @@ def _configure_cli_token(profile, insecure):
 
 @click.group(cls=NaturalOrderGroup)
 def cli():
+    """
+    Just Creeate the CLI and define commands order
+    """
     pass
 
 @cli.command()
@@ -95,8 +90,8 @@ def setup(token, insecure):
     insecure_str = str(insecure) if insecure is not None else None
     if token:
         _configure_cli_token(profile, insecure_str)
-    else:
-        pass
+    
+    return None
 
 
 @cli.command(short_help='Create a new the Databricks ML Project. ')
@@ -213,9 +208,3 @@ def sync_remote():
         click.echo("There is no config.json file available in the current path")
         
     return None
-
-#@cli.command(short_help='Delete current project(local/remotely).')
-#def delete():
-#    """
-#    Create a new the Databricks ML Project, based on workspace and dbfs parameters
-#    """
