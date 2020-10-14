@@ -117,6 +117,11 @@ def new():
     os.makedirs(os.path.join(project_local_path,'model/dbfs/output/'))#Databricks DBFS
     os.makedirs(os.path.join(project_local_path,'model/dbfs/artifacts/'))#Databricks DBFS
 
+    #Define Variables
+    model_input_path = fix_path(os.path.join(project_dbfs_path,'model/input/'))
+    model_output_path = fix_path(os.path.join(project_dbfs_path,'model/output/'))
+    model_artifacts_path = fix_path(os.path.join(project_dbfs_path,'model/artifacts/'))
+
     # Start to create the project files
     
     # Readme file
@@ -133,9 +138,9 @@ def new():
     souce_path = os.path.join(databricks_files_path,"preprocessing.txt")
     dst_path = os.path.join(project_local_path,'preprocessing/preprocessing.ipynb')
     kwargs = {"project_name":project_name
-            ,"model_input_path":fix_path(os.path.join(project_dbfs_path,'model/input/'))
-            ,"model_output_path":fix_path(os.path.join(project_dbfs_path,'model/output/'))
-            ,"model_artifacts_path":fix_path(os.path.join(project_dbfs_path,'model/artifacts/'))}
+            ,"model_input_path":model_input_path))
+            ,"model_output_path":model_output_path))
+            ,"model_artifacts_path":model_artifacts_path))}
 
     write_local_files(souce_path,dst_path,**kwargs)
 
@@ -143,9 +148,9 @@ def new():
     souce_path = os.path.join(databricks_files_path,"exploratory_analysis.txt")
     dst_path = os.path.join(project_local_path,'notebooks/exploratory_analysis.ipynb')
     kwargs = {"project_name":project_name
-            ,"model_input_path":fix_path(os.path.join(project_dbfs_path,'model/input/'))
-            ,"model_output_path":fix_path(os.path.join(project_dbfs_path,'model/output/'))
-            ,"model_artifacts_path":fix_path(os.path.join(project_dbfs_path,'model/artifacts/'))}
+            ,"model_input_path":model_input_path))
+            ,"model_output_path":model_output_path))
+            ,"model_artifacts_path":model_artifacts_path))}
 
     write_local_files(souce_path,dst_path,**kwargs)
 
@@ -153,9 +158,9 @@ def new():
     souce_path = os.path.join(databricks_files_path,"model.txt")
     dst_path = os.path.join(project_local_path,'model/workspace/model.ipynb')
     kwargs = {"project_name":project_name
-            ,"model_input_path":fix_path(os.path.join(project_dbfs_path,'model/input/'))
-            ,"model_output_path":fix_path(os.path.join(project_dbfs_path,'model/output/'))
-            ,"model_artifacts_path":fix_path(os.path.join(project_dbfs_path,'model/artifacts/'))}
+            ,"model_input_path":model_input_path))
+            ,"model_output_path":model_output_path))
+            ,"model_artifacts_path":model_artifacts_path))}
 
     write_local_files(souce_path,dst_path,**kwargs)
 
