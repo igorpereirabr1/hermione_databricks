@@ -1,12 +1,12 @@
 {
-    "name": "project_name",
+    "name": "MyProject",
     "resources": [
       {
         "id": "workspace-readme-notebook",
         "service": "workspace",
         "properties": {
-          "source_path": "project_local_path/README.ipynb",
-          "path": "project_workspace_path/README.ipynb",
+          "source_path": "C:/Users/ju195/Desktop/teste/MyProject/README.ipynb",
+          "path": "/Users/ju195@cummins.com/teste/MyProject/README.ipynb",
           "object_type": "NOTEBOOK"
         }
       },
@@ -14,8 +14,8 @@
         "id": "workspace-model-notebook",
         "service": "workspace",
         "properties": {
-          "source_path": "project_local_path/model/workspace/model.ipynb",
-          "path": "project_workspace_path/model/model.ipynb",
+          "source_path": "C:/Users/ju195/Desktop/teste/MyProject/model/workspace/model.ipynb",
+          "path": "/Users/ju195@cummins.com/teste/MyProject/model/model.ipynb",
           "object_type": "NOTEBOOK"
         }
       },
@@ -23,8 +23,8 @@
         "id": "workspace-preprocessing-notebook",
         "service": "workspace",
         "properties": {
-          "source_path": "project_local_path/preprocessing/preprocessing.ipynb",
-          "path": "project_workspace_path/preprocessing/preprocessing.ipynb",
+          "source_path": "C:/Users/ju195/Desktop/teste/MyProject/preprocessing/preprocessing.ipynb",
+          "path": "/Users/ju195@cummins.com/teste/MyProject/preprocessing/preprocessing.ipynb",
           "object_type": "NOTEBOOK"
         }
       },
@@ -32,8 +32,8 @@
         "id": "workspace-exploratory_analysis-notebook",
         "service": "workspace",
         "properties": {
-          "source_path": "project_local_path/notebooks/exploratory_analysis.ipynb",
-          "path": "project_workspace_path/notebooks/exploratory_analysis.ipynb",
+          "source_path": "C:/Users/ju195/Desktop/teste/MyProject/notebooks/exploratory_analysis.ipynb",
+          "path": "/Users/ju195@cummins.com/teste/MyProject/notebooks/exploratory_analysis.ipynb",
           "object_type": "NOTEBOOK"
         }
       },
@@ -41,7 +41,7 @@
         "id": "dbfs-model_input-dir",
         "service": "dbfs",
         "properties": {
-          "source_path": "project_local_path/model/dbfs/input",
+          "source_path": "C:/Users/ju195/Desktop/teste/MyProject/model/dbfs/input",
           "path": "project_dbfs_path/model/input",
           "is_dir": true
         }
@@ -50,7 +50,7 @@
         "id": "dbfs-model_output-dir",
         "service": "dbfs",
         "properties": {
-          "source_path": "project_local_path/model/dbfs/output",
+          "source_path": "C:/Users/ju195/Desktop/teste/MyProject/model/dbfs/output",
           "path": "project_dbfs_path/model/output",
           "is_dir": true
         }
@@ -59,7 +59,7 @@
         "id": "dbfs-model_artifacts-dir",
         "service": "dbfs",
         "properties": {
-          "source_path": "project_local_path/model/dbfs/artifacts",
+          "source_path": "C:/Users/ju195/Desktop/teste/MyProject/model/dbfs/artifacts",
           "path": "project_dbfs_path/model/artifacts",
           "is_dir": true
         }
