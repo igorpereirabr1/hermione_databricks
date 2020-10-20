@@ -1,20 +1,18 @@
 # -*- coding: utf-8 -*-
 
+from ..api.sync import Sync
+from ..api.project import Project
 
 import click
 from click import ParamType
-import os
-import sys
 from pathlib import Path
-import errno
+import os
 from databricks_cli.configure.provider import (
     DatabricksConfig,
     update_and_persist_config,
     ProfileConfigProvider,
 )
-from databricks_cli.workspace.api import WorkspaceApi
-from databricks_cli.configure.config import get_config
-from databricks_cli.sdk.api_client import ApiClient
+
 
 from databricks_cli.utils import CONTEXT_SETTINGS
 from databricks_cli.configure.config import (
@@ -22,16 +20,8 @@ from databricks_cli.configure.config import (
     get_profile_from_context,
     debug_option,
 )
-from databricks_cli.workspace.api import WorkspaceApi
-from hermione_databricks.project.writer import write_local_files
+
 from hermione_databricks.__init__ import __version__ as version
-import hermione_databricks as herm
-
-
-LOCAL_PATH = os.getcwd()
-lib_path = herm.__path__[0]
-databricks_files_path = os.path.join(lib_path, "databricks_file_text")
-
 
 logo = r"""
   _    _                     _                             
@@ -67,10 +57,6 @@ class _DbfsHost(ParamType):
             return value
         else:
             self.fail("The host does not start with https://")
-
-
-def fix_path(path):
-    return str(path).replace("\\", "/")
 
 
 def _configure_cli_token(profile, insecure):
@@ -130,112 +116,32 @@ def new():
         "Databricks Host Workspace path (sample:/Users/xxxx@xxxxxxxx.com/)",
         default=None,
     )
-    project_workspace_path = fix_path(
-        os.path.join(project_workspace_path, project_name)
-    )
+
     project_dbfs_path = click.prompt(
         "Databricks Host DBFS path (sample:dbfs:/Users/xxxx@xxxxxxxx.com/)",
         default=None,
     )
-    project_dbfs_path = fix_path(os.path.join(project_dbfs_path, project_name))
-    project_local_path = fix_path(os.path.join(LOCAL_PATH, project_name))
+
     # Now create local files
     click.echo(f"Creating project {project_name}")
     # Folders from Databricks Workspace
-    os.makedirs(
-        os.path.join(project_local_path, "model/workspace")
-    )  # Databricks Workspace
-    os.makedirs(os.path.join(project_local_path, "notebooks"))  # Databricks Workspace
-
-    # Local Folders from Databricks File System(DBFS)
-    os.makedirs(
-        os.path.join(project_local_path, "model/dbfs/input/")
-    )  # Databricks DBFS
-    os.makedirs(
-        os.path.join(project_local_path, "model/dbfs/output/")
-    )  # Databricks DBFS
-    os.makedirs(
-        os.path.join(project_local_path, "model/dbfs/artifacts/")
-    )  # Databricks DBFS
-
-    # Define Variables
-    model_input_path = fix_path(os.path.join(project_dbfs_path, "model/input/"))
-    model_output_path = fix_path(os.path.join(project_dbfs_path, "model/output/"))
-    model_artifacts_path = fix_path(os.path.join(project_dbfs_path, "model/artifacts/"))
-
-    # Start to create the project files
-
-    # Readme file
-    souce_path = os.path.join(databricks_files_path, "README.txt")
-    dst_path = os.path.join(project_local_path, "README.ipynb")
-    kwargs = {
-        "project_name": project_name,
-        "project_description": project_description,
-        "project_workspace_path": project_workspace_path,
-        "project_dbfs_path": project_dbfs_path,
-    }
-
-    write_local_files(souce_path, dst_path, **kwargs)
-
-    # preprocessing Notebook
-    souce_path = os.path.join(databricks_files_path, "preprocessing.txt")
-    dst_path = os.path.join(project_local_path, "preprocessing/preprocessing.ipynb")
-    kwargs = {
-        "project_name": project_name,
-        "model_input_path": model_input_path,
-        "model_output_path": model_output_path,
-        "model_artifacts_path": model_artifacts_path,
-    }
-
-    write_local_files(souce_path, dst_path, **kwargs)
-
-    # exploratory_analysis Notebook
-    souce_path = os.path.join(databricks_files_path, "exploratory_analysis.txt")
-    dst_path = os.path.join(project_local_path, "notebooks/exploratory_analysis.ipynb")
-    kwargs = {
-        "project_name": project_name,
-        "model_input_path": model_input_path,
-        "model_output_path": model_output_path,
-        "model_artifacts_path": model_artifacts_path,
-    }
-
-    write_local_files(souce_path, dst_path, **kwargs)
-
-    # model Notebook
-    souce_path = os.path.join(databricks_files_path, "model.txt")
-    dst_path = os.path.join(project_local_path, "model/workspace/model.ipynb")
-    kwargs = {
-        "project_name": project_name,
-        "model_input_path": model_input_path,
-        "model_output_path": model_output_path,
-        "model_artifacts_path": model_artifacts_path,
-    }
-
-    write_local_files(souce_path, dst_path, **kwargs)
-
-    # project config file
-    souce_path = os.path.join(databricks_files_path, "stack_configuration.json")
-    dst_path = os.path.join(project_local_path, "config.json")
-    kwargs = {
-        "project_name": project_name,
-        "project_local_path": project_local_path,
-        "project_workspace_path": project_workspace_path,
-        "project_dbfs_path": project_dbfs_path,
-    }
-    # Need some fixes to use it
-    write_local_files(souce_path, dst_path, **kwargs)
-
-    # Upload project to Databricks
-
-    command = (
-        "databricks stack deploy "
-        + os.path.join(project_local_path, "config.json")
-        + " -o"
+    project = Project(
+        project_name=project_name,
+        project_description=project_description,
+        local_path=Path.cwd(),
+        workspace_path=project_workspace_path,
+        fs_path=project_dbfs_path,
     )
-    os.system(command)
+
+    project.create_local_project()
+    project._create_config_file()
+
+    sync = Sync(config_json=project._config_file_path,sync_type="push")
+
+    sync.sync_project()
 
     # Create git repo
-    os.chdir(project_local_path)
+    os.chdir(Path.cwd().joinpath(project_name))
     os.system("git init")
     print(
         "A git repository was created. You should add your files and make your first commit.\n"
@@ -270,95 +176,3 @@ def sync_remote():
         click.echo("There is no config.json file available in the current path")
 
     return None
-
-
-@cli.command(short_help="Sync new file")
-@click.option(
-    "--origin",
-    type=click.Choice(["local", "workspace"], case_sensitive=False),
-    prompt=True,
-    help="Source of the new file",
-)
-@click.option(
-    "--language",
-    type=click.Choice(["PYTHON", "SCALA", "SQL", "R"], case_sensitive=False),
-    prompt=True,
-    help="Source of the new file",
-)
-@click.option(
-    "--source_path",
-    prompt="Please provide the source path",
-    help="Workscace or local file path",
-)
-@click.option(
-    "--target_path",
-    prompt="Please provide the destination path",
-    help="Workspace or local file path",
-)
-def sync_new_file(origin, source_path, target_path, language):
-    """Simple program that greets NAME for a total of COUNT times."""
-
-    # Define the databricks configuration
-    config = get_config()
-    client = ApiClient(host=config.host, token=config.token)
-
-    # Create an workspace instance
-    workspace_api = WorkspaceApi(client)
-
-    # Check if the new file it's created localy or remote(Workspace)
-    if origin == "local":
-        # Get source file information
-        formated_source_path = Path(source_path)
-        file_name = formated_source_path.name
-        # Define target_path information
-        formated_target_path = os.path.join(target_path, file_name)
-        if formated_source_path.exists():
-            # define the comand to upload the local file
-            workspace_api.import_workspace(
-                source_path=formated_source_path,
-                target_path=formated_target_path,
-                language=language,
-                fmt="SOURCE",
-                is_overwrite=True,
-                headers=None,
-            )
-
-            try:
-                workspace_api.list_objects(
-                    workspace_path=os.path.join(target_path, file_name)
-                )
-            except Exception:
-                click.echo("The upload has failed..")
-
-        else:
-            raise FileNotFoundError(errno.ENOENT, os.strerror(errno.ENOENT), file_name)
-            # click.echo("Source file not found")
-        # verificar se arquivo existe
-    else:
-        file_name = Path(source_path).name
-
-        try:
-            workspace_api.list_objects(workspace_path=source_path)
-
-        except Exception:
-            click.echo(
-                "The file:{} does not exist at the source path: {}".format(
-                    file_name, Path(source_path).parent
-                )
-            )
-            sys.exit()
-
-        # Define target_path information
-        formated_target_path = Path(target_path).joinpath(file_name)
-
-        workspace_api.export_workspace(
-            source_path=source_path,
-            target_path=formated_target_path,
-            fmt=language,
-            is_overwrite=True,
-            headers=None,
-        )
-
-        # Chech if the remote file was downloaded
-        if not target_path.exists():
-            click.echo("The download has failed..")

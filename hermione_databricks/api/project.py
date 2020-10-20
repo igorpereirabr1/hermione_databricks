@@ -238,8 +238,4 @@ class Project(object):
         with open(self._config_file_path, "w", encoding="utf-8") as f:
             json.dump(self._json_config, f, ensure_ascii=False, indent=4)
 
-        sync = Sync(config_json=self._config_file_path,sync_type="push")
-
-        sync.sync_project()
-
         return None
