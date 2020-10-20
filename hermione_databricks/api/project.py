@@ -1,3 +1,6 @@
+from .sync import Sync
+from .resources import Resources
+
 from databricks_cli.workspace.api import WorkspaceApi
 from databricks_cli.configure.config import get_config
 from databricks_cli.sdk.api_client import ApiClient
@@ -114,38 +117,6 @@ class Project(object):
             input_value = Path(herm.__path__[0]).joinpath("databricks_file_text")
         self._project_template_path = input_value
 
-    def __notebook_resource_template(
-        self, resource_id: str = None, source_path: str = None, target_path: str = None
-    ):
-
-        """Create a Notebook resource template"""
-
-        template = {
-            "id": "workspace-{}-NOTEBOOK".format(resource_id).lower(),
-            "service": "workspace",
-            "properties": {
-                "source_path": source_path,
-                "path": target_path,
-                "object_type": "NOTEBOOK",
-            },
-        }
-        return template
-
-    def __file_resource_template(
-        self, resource_id: str = None, source_path: str = None, target_path: str = None
-    ):
-        """Create a Notebook resource template"""
-
-        template = {
-            "id": "workspace-{}-FileSystem".format(resource_id).lower(),
-            "service": "dbfs",
-            "properties": {
-                "source_path": source_path,
-                "path": target_path,
-                "is_dir": True,
-            },
-        }
-        return template
 
     def create_local_project(self):
 
@@ -222,6 +193,9 @@ class Project(object):
             ".html",
         ]
 
+        res = Resources()
+
+
         resources = []
 
         for root, subdirectories, files in os.walk(self._local_path):
@@ -235,7 +209,7 @@ class Project(object):
                         self._local_path.as_posix(), self._workspace_path
                     )
                     # Create a new reource based in the workspace template
-                    resource = self.__notebook_resource_template(
+                    resource = res._notebook_resource_template(
                         resource_id, source_path, dest_path
                     )
                     resources.append(resource)
@@ -251,53 +225,21 @@ class Project(object):
                     self._local_path.as_posix(), self._fs_path
                 )
                 # Create a new reource based in the workspace template
-                resource = self.__file_resource_template(
+                resource = res._fs_resource_template(
                     resource_id, source_path, dest_path
                 )
                 resources.append(resource)
 
         self._json_config = {"name": self._project_name, "resources": resources}
-        config_file_path = self._local_path.joinpath(
+        self._config_file_path = self._local_path.joinpath(
             "FileSystem/artifacts/config.json"
         ).as_posix()
         # Create the json config file
-        with open(config_file_path, "w", encoding="utf-8") as f:
+        with open(self._config_file_path, "w", encoding="utf-8") as f:
             json.dump(self._json_config, f, ensure_ascii=False, indent=4)
 
-        return None
+        sync = Sync(config_json=self._config_file_path,sync_type="push")
 
-    def _sync_new_project(self):
-        """Function to push a new local project to Databricks:
-        .workspace path
-        ├── project_name
-        |   ├── README.ipynb
-        |   ├── config.json
-        |   ├── notebooks
-        |   |   └── exploratory_analysis.ipynb
-        |   ├── preprocessing
-        |   |   └── preprocessing.ipynb
-        |   └── model
-        |       └── model.ipynb
-        |
-        ├── FileSystem(DBFS)
-        |   ├── artifacts
-        |       └── config.json
-        |   └── data
-        |       └── raw
-        |       └── feature
-        |       └── ml_input
-        |       └── ml_output
-        """
-
-        # Define the databricks configuration
-        config = get_config()
-        client = ApiClient(host=config.host, token=config.token)
-        stack_api = StackApi(client)
-        # project config file
-        stack_api.deploy(
-            stack_config=self._json_config,
-            stack_status=None,
-            headers=None,
-        )
+        sync.sync_project()
 
         return None

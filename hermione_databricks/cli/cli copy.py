@@ -1,5 +1,7 @@
 # -*- coding: utf-8 -*-
 
+from api.sync import Sync
+from api.project import Project
 
 import click
 from click import ParamType
@@ -134,7 +136,10 @@ def new():
 
     project.create_local_project()
     project._create_config_file()
-    project._sync_new_project()
+
+    sync = Sync(config_json=project._config_file_path,sync_type="push")
+
+    sync.sync_project()
 
     # Create git repo
     os.chdir(Path.cwd().joinpath(project_name))
