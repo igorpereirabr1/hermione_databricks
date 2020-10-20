@@ -66,53 +66,60 @@ With  #hermione-databricks you will be able to create the entire structure for y
 
 When you start a new project with hermione-databricks, automatcly the bellow local/remote project structures will be created:
 
-<table style="border-collapse: collapse; width: 100%;border=1;" >
-<tbody>
+<html>
+<table>
 <tr>
-<td style="width: 50%; text-align: center;"><strong>Local(💻)</strong></td>
-<td style="width: 50%; text-align: center;"><strong>Remote - Databricks(☁️)</strong></td>
+<td> Local </td> <td> Remote </td>
 </tr>
 <tr>
-<td style="width: 50%; line-height:3px;page-break-inside:avoid;">
-<p style="line-height: 3px;"></p>
-<p style="line-height: 3px;">.Current Dir</p>
-<p style="line-height: 3px;"><g-emoji class="g-emoji" alias="open_file_folder" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/1f4c2.png">📂</g-emoji>project_name</p>
-<p style="line-height: 3px;">┣ <g-emoji class="g-emoji" alias="scroll" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/1f4dc.png">📜</g-emoji> <a href="hermione_databricks\databricks_file_text\README.ipynb">README.ipynb</a></p>
-<p style="line-height: 3px;">┣ <g-emoji class="g-emoji" alias="scroll" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/1f4dc.png">📜</g-emoji> <a href="hermione_databricks\databricks_file_text\stack_configuration.json">config.json</a></p>
-<p style="line-height: 3px;">┣ <g-emoji class="g-emoji" alias="open_file_folder" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/1f4c2.png">📂</g-emoji>notebooks</p>
-<p style="line-height: 3px;">&nbsp;&nbsp; ┗<g-emoji class="g-emoji" alias="scroll" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/1f4dc.png">📜</g-emoji><a href="hermione_databricks\databricks_file_text\exploratory_analysis.ipynb">exploratory_analysis.ipynb</a></p>
-<p style="line-height: 3px;">┣<g-emoji class="g-emoji" alias="open_file_folder" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/1f4c2.png">📂</g-emoji>preprocessing</p>
-<p style="line-height: 3px;">&nbsp;&nbsp; ┗<g-emoji class="g-emoji" alias="scroll" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/1f4dc.png">📜</g-emoji><a href="hermione_databricks\databricks_file_text\preprocessing.ipynb">preprocessing.ipynb</a></p>
-<p style="line-height: 3px;">┗<g-emoji class="g-emoji" alias="open_file_folder" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/1f4c2.png">📂</g-emoji>model</p>
-<p style="line-height: 3px;">&nbsp;&nbsp; ┗<g-emoji class="g-emoji" alias="open_file_folder" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/1f4c2.png">📂</g-emoji>Workspace</p>
-<p style="line-height: 3px;">&nbsp;&nbsp; ┗<g-emoji class="g-emoji" alias="scroll" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/1f4dc.png">📜</g-emoji><a href="hermione_databricks\databricks_file_text\model.ipynb">model.ipynb</a></p>
-<p style="line-height: 3px;">&nbsp;&nbsp; ┗<g-emoji class="g-emoji" alias="open_file_folder" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/1f4c2.png">📂</g-emoji>dbfs</p>
-<p style="line-height: 3px;">&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; ┗<g-emoji class="g-emoji" alias="open_file_folder" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/1f4c2.png">📂</g-emoji>input</p>
-<p style="line-height: 3px;">&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; ┗<g-emoji class="g-emoji" alias="open_file_folder" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/1f4c2.png">📂</g-emoji>output</p>
-<p style="line-height: 3px;">&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; ┗<g-emoji class="g-emoji" alias="open_file_folder" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/1f4c2.png">📂</g-emoji>artifacts</p>
+<td>
+
+Local project structure
+``` 
+.Current Dir
+├── project_name
+|   ├── README.ipynb
+|   ├── config.json
+|   ├── notebooks
+|   |   └── exploratory_analysis.ipynb
+|   ├── preprocessing
+|   |   └── preprocessing.ipynb
+|   └── model
+|       ├── Workspace
+|       |   └── model.ipynb
+|       └── dbfs 
+|           ├── input
+|           ├── output
+|           └── artifacts
+```
+
+
 </td>
-<td style="width: 50%; line-height: 3px;page-break-inside: avoid;">
-<p style="line-height: 3px;"></p>
-<p style="line-height: 3px;">.Workspace</p>
-<p style="line-height: 3px;"><g-emoji class="g-emoji" alias="open_file_folder" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/1f4c2.png">📂</g-emoji>project_name</p>
-<p style="line-height: 3px;">┣ <g-emoji class="g-emoji" alias="scroll" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/1f4dc.png">📜</g-emoji> <a href="hermione_databricks\databricks_file_text\README.ipynb">README.ipynb</a></p>
-<p style="line-height: 3px;">┣ <g-emoji class="g-emoji" alias="open_file_folder" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/1f4c2.png">📂</g-emoji>notebooks</p>
-<p style="line-height: 3px;">&nbsp;&nbsp; ┗<g-emoji class="g-emoji" alias="scroll" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/1f4dc.png">📜</g-emoji><a href="hermione_databricks\databricks_file_text\exploratory_analysis.ipynb">exploratory_analysis.ipynb</a></p>
-<p style="line-height: 3px;">┣<g-emoji class="g-emoji" alias="open_file_folder" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/1f4c2.png">📂</g-emoji>preprocessing</p>
-<p style="line-height: 3px;">&nbsp;&nbsp; ┗<g-emoji class="g-emoji" alias="scroll" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/1f4dc.png">📜</g-emoji><a href="hermione_databricks\databricks_file_text\preprocessing.ipynb">preprocessing.ipynb</a></p>
-<p style="line-height: 3px;">┗<g-emoji class="g-emoji" alias="open_file_folder" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/1f4c2.png">📂</g-emoji>model</p>
-<p style="line-height: 3px;">&nbsp;&nbsp; ┗<g-emoji class="g-emoji" alias="scroll" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/1f4dc.png">📜</g-emoji><a href="hermione_databricks\databricks_file_text\model.ipynb">model.ipynb</a></p>
-<p style="line-height: 3px;"></p>
-<p style="line-height: 3px;"></p>
-<p style="line-height: 3px;">.dbfs:</p>
-<p style="line-height: 3px;"><g-emoji class="g-emoji" alias="open_file_folder" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/1f4c2.png">📂</g-emoji>project_name</p>
-<p style="line-height: 3px;">&nbsp;&nbsp; ┗<g-emoji class="g-emoji" alias="open_file_folder" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/1f4c2.png">📂</g-emoji>input</p>
-<p style="line-height: 3px;">&nbsp;&nbsp; ┗<g-emoji class="g-emoji" alias="open_file_folder" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/1f4c2.png">📂</g-emoji>output</p>
-<p style="line-height: 3px;">&nbsp;&nbsp; ┗<g-emoji class="g-emoji" alias="open_file_folder" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/1f4c2.png">📂</g-emoji>artifacts</p>
+<td>
+
+Remote project structure
+```
+.Workspace
+├── project_name
+|   ├── README.ipynb
+|   ├── model
+|   |   └── model.ipynb
+|   ├── notebooks
+|   |   └── exploratory_analysis.ipynb
+|   ├── preprocessing
+|   |   └── preprocessing.ipynb
+dbfs:
+└── project_name
+|   └── model
+|       ├── input
+|       ├── output
+|       └── artifacts
+```
+
 </td>
 </tr>
-</tbody>
 </table>
+</html>
 
 It's important to note that they are not an exact mirror, the reason is the natural difference of local and remote environments,especially considering the DBFS.
 
