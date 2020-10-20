@@ -61,3 +61,6 @@ class Sync():
             headers=None)
 
         return None
+
+    def _teste(self):
+        return None
