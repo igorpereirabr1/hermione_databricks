@@ -87,14 +87,14 @@ Local project structure
 |   └── model
 |       └── model.ipynb
 |
-├── FileSystem
-|   ├── artifacts
-|       └── config.json
-|   └── data
-|       └── raw
-|       └── feature
-|       └── ml_input
-|       └── ml_output
+├──── FileSystem
+|     ├── artifacts
+|         └── config.json
+|     └── data
+|         └── raw
+|         └── feature
+|         └── ml_input
+|         └── ml_output
 ```
 
 
@@ -113,9 +113,9 @@ project_name
 ├── preprocessing
 |   └── preprocessing.ipynb
 |
+
 .FileSystem
-project_fs_path
-└── FileSystem
+└── project_fs_path
 |   └── artifacts
 |   |   ├── config.json
 |   └── data
