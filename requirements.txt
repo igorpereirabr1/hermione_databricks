@@ -1,3 +1,2 @@
-butterfree
 databricks-cli
 Click

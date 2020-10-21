@@ -85,12 +85,16 @@ Local project structure
 |   ├── preprocessing
 |   |   └── preprocessing.ipynb
 |   └── model
-|       ├── Workspace
-|       |   └── model.ipynb
-|       └── dbfs 
-|           ├── input
-|           ├── output
-|           └── artifacts
+|       └── model.ipynb
+|
+├── FileSystem
+|   ├── artifacts
+|       └── config.json
+|   └── data
+|       └── raw
+|       └── feature
+|       └── ml_input
+|       └── ml_output
 ```
 
 
@@ -100,20 +104,25 @@ Local project structure
 Remote project structure
 ```
 .Workspace
-├── project_name
-|   ├── README.ipynb
-|   ├── model
-|   |   └── model.ipynb
-|   ├── notebooks
-|   |   └── exploratory_analysis.ipynb
-|   ├── preprocessing
-|   |   └── preprocessing.ipynb
-dbfs:
-└── project_name
-|   └── model
-|       ├── input
-|       ├── output
-|       └── artifacts
+project_name
+└── README.ipynb
+├── model
+|   └── model.ipynb
+├── notebooks
+|   └── exploratory_analysis.ipynb
+├── preprocessing
+|   └── preprocessing.ipynb
+|
+.FileSystem
+project_fs_path
+└── FileSystem
+|   └── artifacts
+|   |   ├── config.json
+|   └── data
+|       ├── raw
+|       ├── feature
+|       ├── ml_input
+|       └── ml_output
 ```
 
 </td>

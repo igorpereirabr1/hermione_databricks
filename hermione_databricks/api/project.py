@@ -13,6 +13,7 @@ import codecs
 import os
 import json
 
+
 class Project(object):
     """Configuration for a new Project using hermione-databricks.
 
@@ -117,7 +118,6 @@ class Project(object):
             input_value = Path(herm.__path__[0]).joinpath("databricks_file_text")
         self._project_template_path = input_value
 
-
     def create_local_project(self):
 
         """Function to create the local files:
@@ -194,7 +194,6 @@ class Project(object):
         ]
 
         res = Resources()
-
 
         resources = []
 
