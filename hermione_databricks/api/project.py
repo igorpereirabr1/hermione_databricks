@@ -1,5 +1,5 @@
 from .sync import Sync
-from .resources import Resources
+from .resources import Resources, Templates
 
 from databricks_cli.workspace.api import WorkspaceApi
 from databricks_cli.configure.config import get_config
@@ -208,8 +208,6 @@ class Project(object):
             ".html",
         ]
 
-        res = Resources()
-
         resources = []
 
         for root, subdirectories, files in os.walk(self._local_path):
@@ -223,9 +221,8 @@ class Project(object):
                         self._local_path.as_posix(), self._workspace_path
                     )
                     # Create a new reource based in the workspace template
-                    resource = res._notebook_resource_template(
-                        resource_id, source_path, dest_path
-                    )
+                    template = Templates(resource_id, source_path, dest_path)
+                    resource = template._notebook_resource_template()
                     resources.append(resource)
 
         for root, subdirectories, files in os.walk(
@@ -239,9 +236,8 @@ class Project(object):
                     self._local_path.as_posix(), self._fs_path
                 )
                 # Create a new reource based in the workspace template
-                resource = res._fs_resource_template(
-                    resource_id, source_path, dest_path
-                )
+                template = Templates(resource_id, source_path, dest_path)
+                resource = template._fs_resource_template()
                 resources.append(resource)
 
         self._json_config = {"name": self._project_name, "resources": resources}
