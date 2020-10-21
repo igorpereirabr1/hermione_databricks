@@ -5,13 +5,27 @@ from databricks_cli.workspace.api import WorkspaceApi
 from databricks_cli.configure.config import get_config
 from databricks_cli.sdk.api_client import ApiClient
 from databricks_cli.stack.api import StackApi
-from hermione_databricks.project.writer import write_local_files
 import hermione_databricks as herm
 from pathlib import Path
 import shutil
 import codecs
 import os
 import json
+
+def write_local_files(souce_path,dst_path,**kwargs):
+    
+    #Create local dir if not exist
+    os.makedirs(os.path.dirname(dst_path), exist_ok=True)
+    
+    # Open the source txt file
+    with codecs.open(souce_path, 'r', "utf-8") as infile:
+        file = infile.read()
+    # Iterate over the words that should be replaced in the text file    
+    for k,v in kwargs.items():
+        file = file.replace(k,v)
+    # Save the final file
+    with codecs.open(dst_path, 'w+', "utf-8") as outfile:
+        outfile.writelines(file)
 
 
 class Project(object):
