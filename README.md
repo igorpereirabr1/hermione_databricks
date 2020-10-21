@@ -1,3 +1,4 @@
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=igorpereirabr1_hermione_databricks&metric=alert_status)](https://sonarcloud.io/dashboard?id=igorpereirabr1_hermione_databricks)
 [![Release](https://img.shields.io/github/v/release/igorpereirabr1/hermione_databricks)]((https://pypi.org/project/hermione-databricks/))
 ![Python Version](https://img.shields.io/badge/python-3.6%20|%203.7%20|%203.8-brightgreen.svg)
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)

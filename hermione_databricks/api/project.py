@@ -12,19 +12,20 @@ import codecs
 import os
 import json
 
-def write_local_files(souce_path,dst_path,**kwargs):
-    
-    #Create local dir if not exist
+
+def write_local_files(souce_path, dst_path, **kwargs):
+
+    # Create local dir if not exist
     os.makedirs(os.path.dirname(dst_path), exist_ok=True)
-    
+
     # Open the source txt file
-    with codecs.open(souce_path, 'r', "utf-8") as infile:
+    with codecs.open(souce_path, "r", "utf-8") as infile:
         file = infile.read()
-    # Iterate over the words that should be replaced in the text file    
-    for k,v in kwargs.items():
-        file = file.replace(k,v)
+    # Iterate over the words that should be replaced in the text file
+    for k, v in kwargs.items():
+        file = file.replace(k, v)
     # Save the final file
-    with codecs.open(dst_path, 'w+', "utf-8") as outfile:
+    with codecs.open(dst_path, "w+", "utf-8") as outfile:
         outfile.writelines(file)
 
 
