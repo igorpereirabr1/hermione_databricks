@@ -6,8 +6,12 @@ import json
 
 
 class Sync:
-    """sync_type: push/pull the entire project
-    sync_type: push/pull the entire project"""
+    """Class to manage Sync project/files using hermione-databricks.
+
+    Attributes:
+        config_json: path to a config.json project file
+        sync_type: push/pull the entire project
+    """
 
     def __init__(self, config_json: str = None, sync_type: str = None):
         self.config_json = config_json

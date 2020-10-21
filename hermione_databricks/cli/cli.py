@@ -137,7 +137,7 @@ def new():
     project.create_local_project()
     project._create_config_file()
 
-    sync = Sync(config_json=project._config_file_path,sync_type="push")
+    sync = Sync(config_json=project._config_file_path, sync_type="push")
 
     sync.sync_project()
 

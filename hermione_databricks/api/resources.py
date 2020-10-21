@@ -4,6 +4,12 @@ import os
 
 
 class Resources:
+    """Class to create,update/delete new project Resources(files,folders) using hermione-databricks.
+
+    Attributes:
+        to_be_defined: parameter description
+    """
+
     def __init__(self):
 
         return None

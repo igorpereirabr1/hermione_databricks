@@ -30,7 +30,7 @@ def write_local_files(souce_path, dst_path, **kwargs):
 
 
 class Project(object):
-    """Configuration for a new Project using hermione-databricks.
+    """Class to manage Projects using hermione-databricks.
 
     Attributes:
         project_name: Project name.
