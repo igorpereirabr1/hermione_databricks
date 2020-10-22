@@ -140,7 +140,8 @@ class Resources:
         try:
             input_value = json.loads(value) or json.loads(f)
         except json.JSONDecodeError as error:
-            raise error("Invalid JSON")
+            raise ValueError("Invalid json file") from error
+
         self._config_json = input_value
 
     def create_config(self, project_path: str = None):
@@ -153,7 +154,6 @@ class Resources:
         _project_path = Path(project_path)
         if _project_path.exists() == False:
             raise FileExistsError("Invalid project parth:{}".format(_project_path))
-            exit()
 
         return None
 
