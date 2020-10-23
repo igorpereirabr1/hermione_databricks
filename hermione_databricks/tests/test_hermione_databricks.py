@@ -39,8 +39,16 @@ def test_create_new_project():
     )
 
     project.create_local_project()
+    
+    test_ok = Path.cwd().joinpath(project._project_name).exists()
 
-    assert Path.cwd().joinpath(project._project_name).exists()
+    try:
+        shutil.rmtree(Path.cwd().joinpath("project_test"))
+    except OSError as e:
+        pass
+
+    assert test_ok
+
 
 def test_project_config():
 
@@ -68,6 +76,13 @@ def test_project_config():
     )
     project_config.create_config()
 
-    assert Path(project_config._config_file_path).exists()
+    test_ok = Path(project_config._config_file_path).exists()
+
+    try:
+        shutil.rmtree(Path.cwd().joinpath("project_test"))
+    except OSError as e:
+        pass
+
+    assert test_ok
 
 
