@@ -13,5 +13,5 @@ def test_info():
     assert logo in res.output
 
 def test_implementation_script_folders():
-    exist = Path().cwd().joinpath('hermione_databricks/databricks_file_text').exists()
+    exist = Path().cwd().joinpath('databricks_file_text').exists()
     assert exist
