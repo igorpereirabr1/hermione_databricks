@@ -1,4 +1,5 @@
 from setuptools import setup, find_packages
+from  hermione_databricks.version import __version__
 import re
 import os
 
