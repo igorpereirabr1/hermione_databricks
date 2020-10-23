@@ -1,6 +1,6 @@
 from click.testing import CliRunner
 from hermione_databricks.cli import cli, logo
-import os
+from pathlib import Path
 
 def test_installation_ok():
     runner = CliRunner()
@@ -13,4 +13,5 @@ def test_info():
     assert logo in res.output
 
 def test_implementation_script_folders():
-    assert os.path.exists(os.path.join(os.getcwd(), 'hermione_databricks', 'databricks_file_text'))
+    exist = Path().cwd().joinpath('hermione_databricks/databricks_file_text').exists()
+    assert exist

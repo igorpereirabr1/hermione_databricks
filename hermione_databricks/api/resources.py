@@ -94,16 +94,6 @@ class Templates:
         self._template = template
         return self._template
 
-    def _config_json_template(self, template_name: str = None, resources: list = []):
-        """Function to create a new (empty) config.json template
-
-        Attributes:
-            template_name: Name of the remplate
-            resources: List of resources from this template
-        """
-        template = {"name": template_name, "resources": resources}
-
-        return template
 
 
 class Config:
@@ -121,7 +111,7 @@ class Config:
         self.project_path = project_path
         self.workspace_path = workspace_path
         self.fs_path = fs_path
-
+        self.project_name = self._project_path.parent.stem
         return None
 
     @property
@@ -214,16 +204,14 @@ class Config:
                 template = Templates(resource_id, source_path, dest_path)
                 resource = template._fs_resource_template()
                 resources.append(resource)
-        #Get the project name based on project path
-        project_name = self._project_path.parent.stem
         # Define the config.json desttination path
         config_dest_path = self._project_path.joinpath(
             "FileSystem/artifacts/config.json"
         ).as_posix()
+
         #Create the config.json based on the resources
-        self._json_config = Templates._config_json_template(
-            template_name=project_name, resources=resources
-        )
+        self._json_config = {"name": self.project_name, "resources": resources}
+        
         # Write the json config file
         with open(config_dest_path, "w", encoding="utf-8") as f:
             json.dump(self._json_config, f, ensure_ascii=False, indent=4)
