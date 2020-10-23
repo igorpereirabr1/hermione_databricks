@@ -94,6 +94,17 @@ class Templates:
         self._template = template
         return self._template
 
+    def _config_json_template(self, template_name: str = None, resources: list = []):
+        """Function to create a new (empty) config.json template
+
+        Attributes:
+            template_name: Name of the remplate
+            resources: List of resources from this template
+        """
+        template = {"name": template_name, "resources": resources}
+
+        return template
+
 
 class Resources:
     """Class to create,update/delete new project Resources(files,folders) using hermione-databricks.
