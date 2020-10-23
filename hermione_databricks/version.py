@@ -1,7 +1,7 @@
-__version__ = "1.0.2"
+__version__ = "1.0.3"
 # Version :1
 # Release :0
-# Revision:2
+# Revision:3
 
 """
 VERSÃO: Acrescenta-se um numero a VERSÃO se o projeto for uma evolução.
