@@ -13,18 +13,18 @@ import os
 import json
 
 
-def write_local_files(souce_path, dst_path, **kwargs):
-    """Function to write the local projet files, responsible also to customize them according with the 
+def write_local_files(souce_path: str = None, dst_path: str = None, **kwargs: dict):
+    """Function to write the local projet files, responsible also to customize them according with the
        project parameters provided by the user.
 
     Attributes:
         souce_path: Path to the original file.
         dst_path: Path where the custom file will be saved.
-        kwargs: dict where the keys and values will be used in the replace function: 
+        kwargs: dict where the keys and values will be used in the replace function:
                for k, v in kwargs.items():
                    file = file.replace(k, v).
     """
-    
+
     # Create local dir if not exist
     os.makedirs(os.path.dirname(dst_path), exist_ok=True)
 
