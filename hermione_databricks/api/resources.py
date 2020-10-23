@@ -110,7 +110,7 @@ class Config:
         self.project_path = project_path
         self.workspace_path = workspace_path
         self.fs_path = fs_path
-        self.project_name = self._project_path.parent.stem
+        self.project_name = Path(self.project_path).parent.stem
         return None
 
     @property
