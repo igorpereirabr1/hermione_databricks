@@ -136,6 +136,7 @@ def new():
 
     project.create_local_project()
     project_config = Config(
+        project_name=project._project_name,
         project_path=project._local_path,
         workspace_path=project._workspace_path,
         fs_path=project._fs_path,
