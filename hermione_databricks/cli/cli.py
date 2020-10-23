@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 from hermione_databricks.api.sync import Sync
-from hermione_databricks.api.resources import Resources
+from hermione_databricks.api.resources import Config
 from hermione_databricks.api.project import Project
 
 import click
@@ -135,7 +135,12 @@ def new():
     )
 
     project.create_local_project()
-    project._create_config_file()
+    project_config = Config(
+        project_path=project._local_path,
+        workspace_path=project._workspace_path,
+        fs_path=project._fs_path,
+    )
+    project_config.create_config()
 
     sync = Sync(config_json=project._config_file_path, sync_type="push")
 

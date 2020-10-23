@@ -1,6 +1,3 @@
-from .sync import Sync
-from .resources import Resources, Templates
-
 from databricks_cli.workspace.api import WorkspaceApi
 from databricks_cli.configure.config import get_config
 from databricks_cli.sdk.api_client import ApiClient
@@ -203,59 +200,5 @@ class Project(object):
                         file = file.replace(k, v)
                     with codecs.open(temp_path, "w+", "utf-8") as outfile:
                         outfile.writelines(file)
-
-        return None
-
-    def _create_config_file(self):
-        workspace_types = [
-            ".dbc",
-            ".scala",
-            ".py",
-            ".sql",
-            ".r",
-            ".ipynb",
-            ".Rmd",
-            ".html",
-        ]
-
-        resources = []
-
-        for root, subdirectories, files in os.walk(self._local_path):
-            for file in files:
-                file_path = Path(root).joinpath(file)
-                # Check if the file shold be send to the workspace
-                if file_path.suffix in workspace_types and file_path.is_file():
-                    resource_id = file_path.stem
-                    source_path = file_path.as_posix()
-                    dest_path = source_path.replace(
-                        self._local_path.as_posix(), self._workspace_path
-                    )
-                    # Create a new reource based in the workspace template
-                    template = Templates(resource_id, source_path, dest_path)
-                    resource = template._notebook_resource_template()
-                    resources.append(resource)
-
-        for root, subdirectories, files in os.walk(
-            self._local_path.joinpath("FileSystem")
-        ):
-            for subdirectory in subdirectories:
-                subpath = Path(root).joinpath(subdirectory)
-                resource_id = subpath.stem
-                source_path = subpath.as_posix()
-                dest_path = source_path.replace(
-                    self._local_path.as_posix(), self._fs_path
-                )
-                # Create a new reource based in the workspace template
-                template = Templates(resource_id, source_path, dest_path)
-                resource = template._fs_resource_template()
-                resources.append(resource)
-
-        self._json_config = {"name": self._project_name, "resources": resources}
-        self._config_file_path = self._local_path.joinpath(
-            "FileSystem/artifacts/config.json"
-        ).as_posix()
-        # Create the json config file
-        with open(self._config_file_path, "w", encoding="utf-8") as f:
-            json.dump(self._json_config, f, ensure_ascii=False, indent=4)
 
         return None

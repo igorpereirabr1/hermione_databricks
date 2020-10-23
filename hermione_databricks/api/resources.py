@@ -106,6 +106,151 @@ class Templates:
         return template
 
 
+class Config:
+    """Class to create a new config.json file based on an existent list of resources
+
+    Attributes:
+        project_path: Path to an existent project
+        workspace_path: Databricks workspace path where the workspace files will be stored.
+        fs_path:  dbfs path where the project artifacts, like mlflow experiments and models will be saved.
+    """
+
+    def __init__(
+        self, project_path: str = None, workspace_path: str = None, fs_path: str = None
+    ):
+        self.project_path = project_path
+        self.workspace_path = workspace_path
+        self.fs_path = fs_path
+
+        return None
+
+    @property
+    def project_path(self):
+        return self._project_path
+
+    @project_path.setter
+    def config_path(self, value: str = None):
+        input_value = value or self.project_path
+        if input_value is None:
+            raise ValueError("The project_path cannot be empty.")
+        elif input_value.exists() == False:
+            raise FileExistsError(
+                "The project path does not exist:{}".format(input_value)
+            )
+        self._project_path = input_value
+
+    @property
+    def workspace_path(self) -> str:
+        """Databricks workspace path where the workspace files will be stored."""
+        return self._workspace_path
+
+    @workspace_path.setter
+    def workspace_path(self, value: str):
+        input_value = value or self.workspace_path
+        if input_value is None:
+            raise ValueError("Config 'workspace_path' cannot be empty.")
+        self._workspace_path = Path(input_value).joinpath(self.project_name).as_posix()
+
+    @property
+    def fs_path(self) -> str:
+        """FileSystem path where is the project data, artifacts, models, mlflow experiments should be saved."""
+        return self._fs_path
+
+    @fs_path.setter
+    def fs_path(self, value: str):
+        input_value = value or self.fs_path
+        if input_value is None:
+            raise ValueError("Config 'fs_path' cannot be empty.")
+        self._fs_path = Path(input_value).joinpath(self.project_name).as_posix()
+
+    def create_config(
+        self,
+    ):
+
+        """Function to create a new (config.json) file
+
+        Attributes:
+            config_path: path to project Resources (config.json) file
+        """
+        workspace_types = [
+            ".dbc",
+            ".scala",
+            ".py",
+            ".sql",
+            ".r",
+            ".ipynb",
+            ".Rmd",
+            ".html",
+        ]
+
+        resources = []
+
+        for root, subdirectories, files in os.walk(self._project_path):
+            for file in files:
+                file_path = Path(root).joinpath(file)
+                # Check if the file shold be send to the workspace
+                if file_path.suffix in workspace_types and file_path.is_file():
+                    resource_id = file_path.stem
+                    source_path = file_path.as_posix()
+                    dest_path = source_path.replace(
+                        self._project_path.as_posix(), self._workspace_path
+                    )
+                    # Create a new reource based in the workspace template
+                    template = Templates(resource_id, source_path, dest_path)
+                    resource = template._notebook_resource_template()
+                    resources.append(resource)
+
+        for root, subdirectories, files in os.walk(
+            self._project_path.joinpath("FileSystem")
+        ):
+            for subdirectory in subdirectories:
+                subpath = Path(root).joinpath(subdirectory)
+                resource_id = subpath.stem
+                source_path = subpath.as_posix()
+                dest_path = source_path.replace(
+                    self._project_path.as_posix(), self._fs_path
+                )
+                # Create a new reource based in the workspace template
+                template = Templates(resource_id, source_path, dest_path)
+                resource = template._fs_resource_template()
+                resources.append(resource)
+        #Get the project name based on project path
+        project_name = self._project_path.parent.stem
+        # Define the config.json desttination path
+        config_dest_path = self._project_path.joinpath(
+            "FileSystem/artifacts/config.json"
+        ).as_posix()
+        #Create the config.json based on the resources
+        self._json_config = Templates._config_json_template(
+            template_name=project_name, resources=resources
+        )
+        # Write the json config file
+        with open(config_dest_path, "w", encoding="utf-8") as f:
+            json.dump(self._json_config, f, ensure_ascii=False, indent=4)
+
+        return None
+
+    def update_config(self):
+
+        """Function to update an existent project Resources (config.json) file
+
+        Attributes:
+            config_path: path to project Resources (config.json) file
+        """
+
+        return None
+
+    def delete_config(self):
+
+        """Function to delete an existent project Resources (config.json) file
+
+        Attributes:
+            config_path: path to project Resources (config.json) file
+        """
+
+        return None
+
+
 class Resources:
     """Class to create,update/delete new project Resources(files,folders) using hermione-databricks.
 
@@ -154,36 +299,3 @@ class Resources:
             raise ValueError("Invalid json file") from error
 
         self._config_json = input_value
-
-    def create_config(self, project_path: str = None):
-
-        """Function to create a new project Resources (config.json) file
-
-        Attributes:
-            project_path: path to project
-        """
-        _project_path = Path(project_path)
-        if _project_path.exists() == False:
-            raise FileExistsError("Invalid project parth:{}".format(_project_path))
-
-        return None
-
-    def update_config(self):
-
-        """Function to update an existent project Resources (config.json) file
-
-        Attributes:
-            config_path: path to project Resources (config.json) file
-        """
-
-        return None
-
-    def delete_config(self):
-
-        """Function to delete an existent project Resources (config.json) file
-
-        Attributes:
-            config_path: path to project Resources (config.json) file
-        """
-
-        return None
