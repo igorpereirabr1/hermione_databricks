@@ -1,3 +1,4 @@
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=igorpereirabr1_hermione_databricks&metric=alert_status)](https://sonarcloud.io/dashboard?id=igorpereirabr1_hermione_databricks)
 [![Release](https://img.shields.io/github/v/release/igorpereirabr1/hermione_databricks)]((https://pypi.org/project/hermione-databricks/))
 ![Python Version](https://img.shields.io/badge/python-3.6%20|%203.7%20|%203.8-brightgreen.svg)
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
@@ -85,12 +86,16 @@ Local project structure
 |   ├── preprocessing
 |   |   └── preprocessing.ipynb
 |   └── model
-|       ├── Workspace
-|       |   └── model.ipynb
-|       └── dbfs 
-|           ├── input
-|           ├── output
-|           └── artifacts
+|       └── model.ipynb
+|
+├──── FileSystem
+|     ├── artifacts
+|         └── config.json
+|     └── data
+|         └── raw
+|         └── feature
+|         └── ml_input
+|         └── ml_output
 ```
 
 
@@ -100,20 +105,25 @@ Local project structure
 Remote project structure
 ```
 .Workspace
-├── project_name
-|   ├── README.ipynb
-|   ├── model
-|   |   └── model.ipynb
-|   ├── notebooks
-|   |   └── exploratory_analysis.ipynb
-|   ├── preprocessing
-|   |   └── preprocessing.ipynb
-dbfs:
-└── project_name
-|   └── model
-|       ├── input
-|       ├── output
-|       └── artifacts
+project_name
+└── README.ipynb
+├── model
+|   └── model.ipynb
+├── notebooks
+|   └── exploratory_analysis.ipynb
+├── preprocessing
+|   └── preprocessing.ipynb
+|
+
+.FileSystem
+└── project_fs_path
+|   └── artifacts
+|   |   ├── config.json
+|   └── data
+|       ├── raw
+|       ├── feature
+|       ├── ml_input
+|       └── ml_output
 ```
 
 </td>
