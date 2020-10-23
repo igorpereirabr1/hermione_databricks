@@ -95,7 +95,6 @@ class Templates:
         return self._template
 
 
-
 class Config:
     """Class to create a new config.json file based on an existent list of resources
 
@@ -205,15 +204,15 @@ class Config:
                 resource = template._fs_resource_template()
                 resources.append(resource)
         # Define the config.json desttination path
-        config_dest_path = self._project_path.joinpath(
+        self._config_file_path = self._project_path.joinpath(
             "FileSystem/artifacts/config.json"
         ).as_posix()
 
-        #Create the config.json based on the resources
+        # Create the config.json based on the resources
         self._json_config = {"name": self.project_name, "resources": resources}
-        
+
         # Write the json config file
-        with open(config_dest_path, "w", encoding="utf-8") as f:
+        with open(self._config_file_path, "w", encoding="utf-8") as f:
             json.dump(self._json_config, f, ensure_ascii=False, indent=4)
 
         return None

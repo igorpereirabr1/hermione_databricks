@@ -142,7 +142,7 @@ def new():
     )
     project_config.create_config()
 
-    sync = Sync(config_json=project._config_file_path, sync_type="push")
+    sync = Sync(config_json=project_config._config_file_path, sync_type="push")
 
     sync.sync_project()
 
