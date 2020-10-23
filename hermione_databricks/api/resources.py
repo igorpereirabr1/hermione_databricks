@@ -105,20 +105,35 @@ class Config:
     """
 
     def __init__(
-        self, project_path: str = None, workspace_path: str = None, fs_path: str = None
+        self,
+        project_name: str = None,
+        project_path: str = None,
+        workspace_path: str = None,
+        fs_path: str = None,
     ):
+        self.project_name = project_name
         self.project_path = project_path
         self.workspace_path = workspace_path
         self.fs_path = fs_path
-        self.project_name = self._project_path.parent.stem
         return None
+
+    @property
+    def project_name(self):
+        return self._project_name
+
+    @project_name.setter
+    def project_name(self, value: str = None):
+        input_value = value or self.project_name
+        if input_value is None:
+            raise ValueError("The project_name cannot be empty.")
+        self._project_name = input_value
 
     @property
     def project_path(self):
         return self._project_path
 
     @project_path.setter
-    def config_path(self, value: str = None):
+    def project_path(self, value: str = None):
         input_value = value or self.project_path
         if input_value is None:
             raise ValueError("The project_path cannot be empty.")
@@ -138,7 +153,7 @@ class Config:
         input_value = value or self.workspace_path
         if input_value is None:
             raise ValueError("Config 'workspace_path' cannot be empty.")
-        self._workspace_path = Path(input_value).joinpath(self.project_name).as_posix()
+        self._workspace_path = Path(input_value).joinpath(self._project_name).as_posix()
 
     @property
     def fs_path(self) -> str:
