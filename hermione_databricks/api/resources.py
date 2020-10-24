@@ -153,7 +153,7 @@ class Config:
         input_value = value or self.workspace_path
         if input_value is None:
             raise ValueError("Config 'workspace_path' cannot be empty.")
-        self._workspace_path = Path(input_value).joinpath(self._project_name).as_posix()
+        self._workspace_path = Path(input_value).as_posix()
 
     @property
     def fs_path(self) -> str:
@@ -165,7 +165,7 @@ class Config:
         input_value = value or self.fs_path
         if input_value is None:
             raise ValueError("Config 'fs_path' cannot be empty.")
-        self._fs_path = Path(input_value).joinpath(self.project_name).as_posix()
+        self._fs_path = Path(input_value).as_posix()
 
     def create_config(
         self,
