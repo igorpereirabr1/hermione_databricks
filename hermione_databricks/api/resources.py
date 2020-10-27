@@ -48,7 +48,7 @@ class Templates:
         input_value = value or self.source_path
         if input_value is None:
             raise ValueError("source_path: must be a path str and cannot be empty.")
-        self._source_path = input_value.lower()
+        self._source_path = input_value
 
     @property
     def target_path(self) -> str:
@@ -60,7 +60,7 @@ class Templates:
         input_value = value or self.target_path
         if input_value is None:
             raise ValueError("target_path: must be a path str and cannot be empty.")
-        self._target_path = input_value.lower()
+        self._target_path = input_value
 
     def _notebook_resource_template(self):
 
