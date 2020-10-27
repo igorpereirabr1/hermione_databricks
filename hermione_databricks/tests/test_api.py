@@ -5,8 +5,8 @@ from pathlib import Path
 import shutil
 
 
-def new_project():
-    # Delete old test project
+def test_new_project():
+
     try:
         shutil.rmtree(Path.cwd().joinpath("project_test"))
     except OSError:
@@ -22,18 +22,11 @@ def new_project():
 
     project.create_local_project()
 
-    test_passed = Path.cwd().joinpath(project._project_name).exists()
-
-    assert test_passed
-
-
-def project_config():
-
     project_config = Config(
-        project_name="project_test",
-        project_path=Path.cwd(),
-        workspace_path="/Users/xxxx@xxxxxxxx.com/",
-        fs_path="dbfs:/Users/xxxx@xxxxxxxx.com/",
+        project_name=project._project_name,
+        project_path=project._local_path,
+        workspace_path=project._workspace_path,
+        fs_path=project._fs_path,
     )
     project_config.create_config()
 
